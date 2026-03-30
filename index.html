@@ -1,1 +1,884 @@
-<h1>Pebble Goose Labs</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pebble Goose Labs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --blue: #1a1aff;
+      --blue-dim: #0f0fcc;
+      --blue-glow: rgba(26, 26, 255, 0.3);
+      --white: #f0f0f0;
+      --off-white: #c8c8d0;
+      --bg: #050508;
+      --bg-mid: #0a0a10;
+      --border: rgba(26, 26, 255, 0.25);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--white);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 15px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* SCANLINE OVERLAY */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.03) 2px,
+        rgba(0,0,0,0.03) 4px
+      );
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 3rem;
+      border-bottom: 1px solid var(--border);
+      background: rgba(5, 5, 8, 0.92);
+      backdrop-filter: blur(10px);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      text-decoration: none;
+    }
+
+    .nav-logo-dots {
+      display: grid;
+      grid-template-columns: repeat(3, 6px);
+      gap: 3px;
+    }
+
+    .nav-logo-dots span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--blue);
+      animation: dotPulse 2s ease-in-out infinite;
+    }
+
+    .nav-logo-dots span:nth-child(2) { animation-delay: 0.1s; }
+    .nav-logo-dots span:nth-child(3) { animation-delay: 0.2s; }
+    .nav-logo-dots span:nth-child(4) { animation-delay: 0.3s; }
+    .nav-logo-dots span:nth-child(5) { animation-delay: 0.4s; }
+    .nav-logo-dots span:nth-child(6) { animation-delay: 0.5s; }
+
+    @keyframes dotPulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .nav-wordmark {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      color: var(--blue);
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--off-white);
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--blue);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 3rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 20%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--blue-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.2s;
+    }
+
+    .hero-tag::before {
+      content: '// ';
+      opacity: 0.5;
+    }
+
+    .hero-title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--white);
+      margin-bottom: 1rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.4s;
+    }
+
+    .hero-title span {
+      color: var(--blue);
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--off-white);
+      max-width: 560px;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.6s;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.8s;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.8rem;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: var(--white);
+      color: var(--bg);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--blue);
+      border: 1px solid var(--blue);
+    }
+
+    .btn-ghost:hover {
+      background: var(--blue);
+      color: var(--white);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 3rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--off-white);
+      opacity: 0.5;
+      animation: fadeUp 0.8s ease forwards 1.2s, bobUpDown 2s ease-in-out infinite 2s;
+    }
+
+    @keyframes bobUpDown {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
+
+    /* SECTION BASE */
+    section {
+      padding: 6rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 1rem;
+    }
+
+    .section-label::before {
+      content: '[ ';
+    }
+
+    .section-label::after {
+      content: ' ]';
+    }
+
+    .section-title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: var(--white);
+      margin-bottom: 2rem;
+      line-height: 1.2;
+    }
+
+    /* MANIFESTO */
+    #manifesto {
+      max-width: 100%;
+      padding: 6rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-mid);
+    }
+
+    .manifesto-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 3rem;
+    }
+
+    .manifesto-opening {
+      font-size: clamp(1rem, 1.8vw, 1.25rem);
+      color: var(--off-white);
+      max-width: 780px;
+      margin-bottom: 4rem;
+      line-height: 1.9;
+      border-left: 2px solid var(--blue);
+      padding-left: 2rem;
+    }
+
+    .manifesto-block {
+      margin-bottom: 3.5rem;
+    }
+
+    .manifesto-block-title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .manifesto-block-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .manifesto-item {
+      padding: 1.2rem 0;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .manifesto-item:last-child {
+      border-bottom: none;
+    }
+
+    .manifesto-item-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--blue);
+      letter-spacing: 0.05em;
+      padding-top: 0.1rem;
+    }
+
+    .manifesto-item-text {
+      color: var(--off-white);
+      font-size: 0.9rem;
+      line-height: 1.8;
+    }
+
+    .manifesto-closing {
+      margin-top: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .manifesto-closing-item {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.95rem;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .manifesto-closing-item::before {
+      content: '>';
+      color: var(--blue);
+      font-size: 1rem;
+    }
+
+    /* PILLARS */
+    #pillars {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-top: 3rem;
+      background: var(--border);
+    }
+
+    .pillar {
+      background: var(--bg);
+      padding: 2.5rem;
+      transition: background 0.3s;
+    }
+
+    .pillar:hover {
+      background: var(--bg-mid);
+    }
+
+    .pillar-number {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 3rem;
+      color: var(--blue);
+      opacity: 0.2;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .pillar-title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 1.1rem;
+      color: var(--white);
+      margin-bottom: 1rem;
+      letter-spacing: 0.05em;
+    }
+
+    .pillar-text {
+      color: var(--off-white);
+      font-size: 0.85rem;
+      line-height: 1.8;
+    }
+
+    /* WORK */
+    #work {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cases-list {
+      margin-top: 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .case-item {
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      gap: 2rem;
+      align-items: start;
+      transition: background 0.2s;
+      cursor: default;
+    }
+
+    .case-item:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .case-item:hover {
+      padding-left: 1rem;
+    }
+
+    .case-domain {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blue);
+      padding-top: 0.2rem;
+    }
+
+    .case-title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.95rem;
+      color: var(--white);
+      margin-bottom: 0.4rem;
+    }
+
+    .case-desc {
+      color: var(--off-white);
+      font-size: 0.8rem;
+      line-height: 1.7;
+    }
+
+    .case-outcome {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      white-space: nowrap;
+      border: 1px solid var(--border);
+      padding: 0.3rem 0.7rem;
+      align-self: start;
+    }
+
+    /* ABOUT */
+    #about {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-top: 3rem;
+    }
+
+    .about-text {
+      color: var(--off-white);
+      font-size: 0.9rem;
+      line-height: 1.9;
+    }
+
+    .about-text p {
+      margin-bottom: 1.2rem;
+    }
+
+    .about-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .stat {
+      border-left: 2px solid var(--blue);
+      padding-left: 1.5rem;
+    }
+
+    .stat-number {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 2rem;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--off-white);
+    }
+
+    /* CONTACT */
+    #contact {
+      text-align: center;
+      padding: 8rem 3rem;
+    }
+
+    #contact .section-label {
+      justify-content: center;
+      display: flex;
+    }
+
+    .contact-title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: clamp(1.8rem, 3vw, 3rem);
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .contact-sub {
+      color: var(--off-white);
+      font-size: 0.9rem;
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.8;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--off-white);
+      opacity: 0.5;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* CURSOR */
+    .cursor {
+      display: inline-block;
+      width: 2px;
+      height: 1.1em;
+      background: var(--blue);
+      margin-left: 3px;
+      vertical-align: middle;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      .hero { padding: 7rem 1.5rem 3rem; }
+      .manifesto-inner { padding: 0 1.5rem; }
+      .manifesto-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .pillars-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .case-item { grid-template-columns: 1fr; }
+      .case-outcome { align-self: auto; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-dots">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+      </div>
+      <span class="nav-wordmark">PGL</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#manifesto">Manifesto</a></li>
+      <li><a href="#pillars">What We Do</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="hero-tag">Civilian Intelligence — Public Record</p>
+    <h1 class="hero-title">
+      Pebble<br>Goose<span style="color:var(--blue)">.</span><br>Labs<span class="cursor"></span>
+    </h1>
+    <p class="hero-subtitle">
+      We investigate financial fraud and environmental pollution using open-source methodology. We publish everything. The public record belongs to the public.
+    </p>
+    <div class="hero-cta">
+      <a href="#manifesto" class="btn btn-primary">Read the Manifesto</a>
+      <a href="#work" class="btn btn-ghost">See the Work</a>
+    </div>
+    <span class="hero-scroll">Scroll to continue ↓</span>
+  </div>
+
+  <!-- MANIFESTO -->
+  <div id="manifesto">
+    <div class="manifesto-inner">
+
+      <div class="section-label reveal">Manifesto</div>
+
+      <div class="manifesto-opening reveal">
+        We believe that silence is a deliberate act of complicity — a rot that allows the corrupt to sleep while their ledgers burn. To remain quiet in the face of documented lies is cowardice. To deny it is conspiracy. We believe that peace without justice is not peace. We refuse to live comfortable, ignorant lives while our fellow humans suffer under the weight of cruelty.
+      </div>
+
+      <div class="manifesto-block reveal">
+        <div class="manifesto-block-title">We reject the following as acts of cowardice</div>
+
+        <div class="manifesto-item">
+          <div class="manifesto-item-label">Jargon as a Shield</div>
+          <div class="manifesto-item-text">We reject complexity used as a wall. If a process cannot be easily accessed by the community it affects, it is designed to exploit them.</div>
+        </div>
+
+        <div class="manifesto-item">
+          <div class="manifesto-item-label">Bystanding</div>
+          <div class="manifesto-item-text">We reject the comfort of the spectator. To stand by while evidence disappears is an invitation for trails to go cold.</div>
+        </div>
+
+        <div class="manifesto-item">
+          <div class="manifesto-item-label">Institutional Blindness</div>
+          <div class="manifesto-item-text">We reject the safety of the status quo. To ignore data because it contradicts power is a betrayal of the craft.</div>
+        </div>
+
+        <div class="manifesto-item">
+          <div class="manifesto-item-label">False Neutrality</div>
+          <div class="manifesto-item-text">We reject the idea that there are two sides to a contaminated well. Factual reality does not require a middle ground. It requires a witness.</div>
+        </div>
+      </div>
+
+      <div class="manifesto-block reveal">
+        <div class="manifesto-block-title">We adhere to the following deeds of valor</div>
+
+        <div class="manifesto-item">
+          <div class="manifesto-item-label">Shouting for the Whispers</div>
+          <div class="manifesto-item-text">We believe in being the voice for those who can only whisper, and the shield for those who cannot defend themselves.</div>
+        </div>
+
+        <div class="manifesto-item">
+          <div class="manifesto-item-label">The Open-Source Vow</div>
+          <div class="manifesto-item-text">We release our tools and our findings to everyone. We do not hoard power — we distribute it as a weapon to the unarmed.</div>
+        </div>
+
+        <div class="manifesto-item">
+          <div class="manifesto-item-label">The First Strike of the Request</div>
+          <div class="manifesto-item-text">We do not wait for permission to know the truth. We demand it, legally and relentlessly. We view the FOIA and the subpoena not as paperwork, but as an offensive line.</div>
+        </div>
+
+        <div class="manifesto-item">
+          <div class="manifesto-item-label">Radical Transparency</div>
+          <div class="manifesto-item-text">We hide nothing about our methods. If our research is sound, it can survive the scrutiny of any enemy.</div>
+        </div>
+
+        <div class="manifesto-item">
+          <div class="manifesto-item-label">The Long Game</div>
+          <div class="manifesto-item-text">We do not chase headlines. We build cases. The truth does not expire.</div>
+        </div>
+      </div>
+
+      <div class="manifesto-block reveal">
+        <div class="manifesto-block-title">The only peace worth having</div>
+        <div class="manifesto-closing">
+          <div class="manifesto-closing-item">Silence is the accomplice of power. We will not be silent.</div>
+          <div class="manifesto-closing-item">Courage and selflessness are not just qualities, but discipline.</div>
+          <div class="manifesto-closing-item">There is no peace without justice, and no justice without accountability.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PILLARS -->
+  <section id="pillars">
+    <div class="section-label reveal">What We Do</div>
+    <h2 class="section-title reveal">Two pillars.<br>One methodology.</h2>
+    <div class="pillars-grid reveal">
+      <div class="pillar">
+        <div class="pillar-number">01</div>
+        <div class="pillar-title">Financial Fraud & Accountability</div>
+        <div class="pillar-text">
+          We trace money through IRS 990 filings, FEC campaign finance data, state lobbying registries, corporate filings, and FOIA responses. We map shell company networks, document grant fraud, and surface undisclosed lobbying coordination. If it moved through the financial system and left a public record, we will find it.
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-number">02</div>
+        <div class="pillar-title">Environmental Pollution & Enforcement Gaps</div>
+        <div class="pillar-text">
+          We document permit violations, illegal discharge incidents, contamination events, and regulatory failures using EPA ECHO, state environmental databases, satellite imagery, and geospatial analysis. We do not take positions on policy. We document what happened, whether enforcement followed, and who bears the burden.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="section-label reveal">Selected Work</div>
+    <h2 class="section-title reveal">Cases with consequences.</h2>
+
+    <div class="cases-list">
+
+      <div class="case-item reveal">
+        <div class="case-domain">Financial Fraud</div>
+        <div>
+          <div class="case-title">FCCD / Gholston — $24M Medicaid Fraud</div>
+          <div class="case-desc">Identified uncharged parties and shell company networks in a federal Medicaid fraud scheme. Findings submitted to HHS OIG and accepted as supplemental federal evidence. Subject pleaded guilty March 2026.</div>
+        </div>
+        <div class="case-outcome">Federal Prosecution</div>
+      </div>
+
+      <div class="case-item reveal">
+        <div class="case-domain">Environmental + Financial</div>
+        <div>
+          <div class="case-title">Sunshine Organics — $2.9M Grant Fraud</div>
+          <div class="case-desc">Documented a federal grant issued to an operator with active FDEP violations, a leachate spill, arsenic contamination adjacent to a low-income residential community, and $100k+ in default judgments.</div>
+        </div>
+        <div class="case-outcome">Regulatory Submission</div>
+      </div>
+
+      <div class="case-item reveal">
+        <div class="case-domain">Financial Fraud</div>
+        <div>
+          <div class="case-title">Multi-State Lobbying Network — Voting Legislation</div>
+          <div class="case-desc">Traced a dark money lobbying network across multiple states using IRS filings and state lobbying registries. Identified a deposition target with direct knowledge of documented voter disenfranchisement. Research memorandum delivered to legal counsel.</div>
+        </div>
+        <div class="case-outcome">Litigation Support</div>
+      </div>
+
+      <div class="case-item reveal">
+        <div class="case-domain">Environmental</div>
+        <div>
+          <div class="case-title">Sixt — Unpermitted Fleet Wash Discharge</div>
+          <div class="case-desc">Witness tip to complete evidentiary report in four days. Historical satellite imagery established a discharge timeline going back to 2014. FDEP Oculus confirmed zero permits. Three responsible parties identified.</div>
+        </div>
+        <div class="case-outcome">Evidentiary Report</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label reveal">About</div>
+    <h2 class="section-title reveal">What PGL is.</h2>
+
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>Pebble Goose Labs is an independent public interest research organization based in Florida. We investigate financial fraud and environmental pollution using open-source methodology and publicly available records — and publish everything freely.</p>
+        <p>We are not a journalism outlet. We are not a law firm. We are not an advocacy organization. We are investigative infrastructure — the connective tissue between raw public records and the communities, lawyers, journalists, and regulators who need them.</p>
+        <p>All tools are released under AGPL licensing. All findings are published openly. No one pays us to find out what their government is doing. That is the point.</p>
+        <p>PGL does not advocate. PGL does not lobby. PGL does not tell anyone what to do with what it finds. PGL follows the records. Regulators, courts, and the public decide what comes next.</p>
+      </div>
+
+      <div class="about-stats reveal">
+        <div class="stat">
+          <div class="stat-number">$24M+</div>
+          <div class="stat-label">Fraud documented in federal cases</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">4 days</div>
+          <div class="stat-label">Witness tip to complete evidentiary report</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Open source. Always.</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">$0</div>
+          <div class="stat-label">Cost to access PGL's published findings</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label">Contact</div>
+    <h2 class="contact-title reveal">Have a tip?<br>Have a lead?</h2>
+    <p class="contact-sub reveal">
+      Community tips are how investigations start. If you have witnessed financial fraud or environmental pollution and it can be corroborated through public records, reach out.
+    </p>
+    <div class="contact-links reveal">
+      <a href="mailto:kwong.osint@proton.me" class="btn btn-primary">kwong.osint@proton.me</a>
+      <a href="https://github.com/kwongosint" class="btn btn-ghost" target="_blank">GitHub</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>© 2026 Pebble Goose Labs</span>
+    <span>Open Source. Transparent. Not For Sale. Ever.</span>
+    <span>Florida, USA</span>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    reveals.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
