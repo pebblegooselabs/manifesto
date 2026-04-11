@@ -480,17 +480,18 @@
     /* SIDE-BY-SIDE LAYOUT FOR ABOUT SECTION */
 .about-content {
   display: flex;
-  align-items: flex-start; /* Keeps the text aligned to the top of the image */
-  gap: 60px;               /* Space between the map and your text */
-  margin-top: 40px;
-  max-width: 1200px;
+  align-items: flex-start;
+  gap: 5rem;               /* Increased gap for a cleaner OSINT look */
+  margin-top: 4rem;
+  max-width: 1400px;       /* Made it wider to stop the "skinny" look */
   margin-left: auto;
   margin-right: auto;
+  padding: 0 2rem;         /* Keeps it from hitting the screen edges */
 }
 
 .recon-frame {
-  flex: 0 0 450px;         /* Keeps the satellite image at a fixed size */
-  height: 350px;
+  flex: 0 0 500px;         /* Anchored the image size */
+  height: 400px;
   position: relative;
   border: 1px solid rgba(0, 242, 255, 0.2);
   background: #000;
@@ -498,7 +499,14 @@
 }
 
 .about-text {
-  flex: 1;                 /* Let the text fill the remaining right-side space */
+  flex: 1;                 /* This pushes the text to take up all the extra space */
+  min-width: 300px;        /* Prevents it from getting too thin */
+}
+
+.about-text p {
+  font-size: 1.1rem;       /* Slightly larger text to fill the space better */
+  line-height: 1.8;
+  max-width: 800px;        /* Limits line length for better readability */
 }
 
 /* MOBILE FIX: Stacks them vertically on phones */
