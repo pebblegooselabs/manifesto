@@ -38,6 +38,7 @@
       overflow-x: hidden;
     }
 
+    /* SCANLINE OVERLAY */
     body::before {
       content: '';
       position: fixed;
@@ -54,6 +55,7 @@
       z-index: 1000;
     }
 
+    /* NAV */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -65,7 +67,6 @@
       border-bottom: 1px solid var(--border);
       background: rgba(5, 5, 8, 0.92);
       backdrop-filter: blur(10px);
-      box-shadow: 0 0 24px rgba(0, 106, 112, 0.08);
     }
 
     .nav-logo {
@@ -86,7 +87,6 @@
       height: 6px;
       border-radius: 50%;
       background: var(--blue);
-      box-shadow: 0 0 8px var(--blue-glow);
       animation: dotPulse 2s ease-in-out infinite;
     }
 
@@ -107,7 +107,6 @@
       letter-spacing: 0.15em;
       color: var(--blue);
       text-transform: uppercase;
-      text-shadow: 0 0 10px var(--blue-glow);
     }
 
     .nav-links {
@@ -122,14 +121,14 @@
       font-size: 0.75rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      transition: color 0.2s, text-shadow 0.2s;
+      transition: color 0.2s;
     }
 
     .nav-links a:hover {
       color: var(--blue);
-      text-shadow: 0 0 8px var(--blue-glow);
     }
 
+    /* HERO */
     .hero {
       min-height: 100vh;
       display: flex;
@@ -147,9 +146,8 @@
       right: -10%;
       width: 600px;
       height: 600px;
-      background: radial-gradient(circle, var(--blue-glow-strong) 0%, transparent 70%);
+      background: radial-gradient(circle, var(--blue-glow) 0%, transparent 70%);
       pointer-events: none;
-      filter: blur(8px);
     }
 
     .hero-tag {
@@ -158,7 +156,6 @@
       text-transform: uppercase;
       color: var(--blue);
       margin-bottom: 1.5rem;
-      text-shadow: 0 0 8px rgba(0, 106, 112, 0.18);
       opacity: 0;
       animation: fadeUp 0.8s ease forwards 0.2s;
     }
@@ -181,9 +178,6 @@
 
     .hero-title span {
       color: var(--blue);
-      text-shadow:
-        0 0 10px var(--blue-glow),
-        0 0 22px rgba(0, 106, 112, 0.22);
     }
 
     .hero-subtitle {
@@ -219,30 +213,22 @@
     .btn-primary {
       background: var(--blue);
       color: var(--white);
-      box-shadow:
-        0 0 0 1px rgba(0, 106, 112, 0.25),
-        0 0 18px rgba(0, 106, 112, 0.22);
     }
 
     .btn-primary:hover {
-      background: var(--blue-bright);
-      color: var(--white);
-      box-shadow:
-        0 0 0 1px rgba(10, 138, 145, 0.35),
-        0 0 24px rgba(0, 106, 112, 0.32);
+      background: var(--white);
+      color: var(--bg);
     }
 
     .btn-ghost {
       background: transparent;
       color: var(--blue);
       border: 1px solid var(--blue);
-      box-shadow: inset 0 0 0 1px rgba(0, 106, 112, 0.08);
     }
 
     .btn-ghost:hover {
-      background: rgba(0, 106, 112, 0.12);
+      background: var(--blue);
       color: var(--white);
-      box-shadow: 0 0 20px rgba(0, 106, 112, 0.18);
     }
 
     .hero-scroll {
@@ -262,6 +248,7 @@
       50% { transform: translateY(6px); }
     }
 
+    /* SECTION BASE */
     section {
       padding: 6rem 3rem;
       max-width: 1100px;
@@ -274,7 +261,6 @@
       text-transform: uppercase;
       color: var(--blue);
       margin-bottom: 1rem;
-      text-shadow: 0 0 8px rgba(0, 106, 112, 0.18);
     }
 
     .section-label::before {
@@ -293,13 +279,13 @@
       line-height: 1.2;
     }
 
+    /* MANIFESTO */
     #manifesto {
       max-width: 100%;
       padding: 6rem 0;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       background: var(--bg-mid);
-      box-shadow: inset 0 0 40px rgba(0, 106, 112, 0.04);
     }
 
     .manifesto-inner {
@@ -316,7 +302,6 @@
       line-height: 1.9;
       border-left: 2px solid var(--blue);
       padding-left: 2rem;
-      box-shadow: -10px 0 30px -22px rgba(0, 106, 112, 0.6);
     }
 
     .manifesto-block {
@@ -333,7 +318,6 @@
       display: flex;
       align-items: center;
       gap: 1rem;
-      text-shadow: 0 0 8px rgba(0, 106, 112, 0.18);
     }
 
     .manifesto-block-title::after {
@@ -362,7 +346,6 @@
       color: var(--blue);
       letter-spacing: 0.05em;
       padding-top: 0.1rem;
-      text-shadow: 0 0 8px rgba(0, 106, 112, 0.18);
     }
 
     .manifesto-item-text {
@@ -391,9 +374,9 @@
       content: '>';
       color: var(--blue);
       font-size: 1rem;
-      text-shadow: 0 0 8px var(--blue-glow);
     }
 
+    /* PILLARS */
     #pillars {
       border-bottom: 1px solid var(--border);
     }
@@ -404,28 +387,25 @@
       gap: 2px;
       margin-top: 3rem;
       background: var(--border);
-      box-shadow: 0 0 28px rgba(0, 106, 112, 0.06);
     }
 
     .pillar {
       background: var(--bg);
       padding: 2.5rem;
-      transition: background 0.3s, box-shadow 0.3s;
+      transition: background 0.3s;
     }
 
     .pillar:hover {
       background: var(--bg-mid);
-      box-shadow: inset 0 0 20px rgba(0, 106, 112, 0.08);
     }
 
     .pillar-number {
       font-family: 'Share Tech Mono', monospace;
       font-size: 3rem;
       color: var(--blue);
-      opacity: 0.25;
+      opacity: 0.2;
       line-height: 1;
       margin-bottom: 1rem;
-      text-shadow: 0 0 12px rgba(0, 106, 112, 0.16);
     }
 
     .pillar-title {
@@ -442,6 +422,7 @@
       line-height: 1.8;
     }
 
+    /* WORK */
     #work {
       border-bottom: 1px solid var(--border);
     }
@@ -460,7 +441,7 @@
       grid-template-columns: 120px 1fr auto;
       gap: 2rem;
       align-items: start;
-      transition: background 0.2s, padding-left 0.2s;
+      transition: background 0.2s;
       cursor: default;
     }
 
@@ -478,7 +459,6 @@
       text-transform: uppercase;
       color: var(--blue);
       padding-top: 0.2rem;
-      text-shadow: 0 0 8px rgba(0, 106, 112, 0.18);
     }
 
     .case-title {
@@ -503,10 +483,9 @@
       border: 1px solid var(--border);
       padding: 0.3rem 0.7rem;
       align-self: start;
-      text-shadow: 0 0 8px rgba(0, 106, 112, 0.18);
-      box-shadow: inset 0 0 12px rgba(0, 106, 112, 0.05);
     }
 
+    /* ABOUT */
     #about {
       border-bottom: 1px solid var(--border);
     }
@@ -537,7 +516,6 @@
     .stat {
       border-left: 2px solid var(--blue);
       padding-left: 1.5rem;
-      box-shadow: -8px 0 18px -14px rgba(0, 106, 112, 0.45);
     }
 
     .stat-number {
@@ -555,6 +533,7 @@
       color: var(--off-white);
     }
 
+    /* CONTACT */
     #contact {
       text-align: center;
       padding: 8rem 3rem;
@@ -587,6 +566,7 @@
       flex-wrap: wrap;
     }
 
+    /* FOOTER */
     footer {
       border-top: 1px solid var(--border);
       padding: 2rem 3rem;
@@ -598,9 +578,9 @@
       text-transform: uppercase;
       color: var(--off-white);
       opacity: 0.5;
-      box-shadow: 0 -10px 30px -25px rgba(0, 106, 112, 0.3);
     }
 
+    /* ANIMATIONS */
     @keyframes fadeUp {
       from {
         opacity: 0;
@@ -623,12 +603,12 @@
       transform: translateY(0);
     }
 
+    /* CURSOR */
     .cursor {
       display: inline-block;
       width: 2px;
       height: 1.1em;
       background: var(--blue);
-      box-shadow: 0 0 8px var(--blue-glow);
       margin-left: 3px;
       vertical-align: middle;
       animation: blink 1s step-end infinite;
@@ -639,6 +619,7 @@
       50% { opacity: 0; }
     }
 
+    /* RESPONSIVE */
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
       .nav-links { display: none; }
@@ -656,238 +637,4 @@
 </head>
 <body>
 
-  <nav>
-    <a href="#" class="nav-logo">
-        <img src="logo.png" alt="Pebble Goose Labs Logo" style="height:32px; width: auto;">
-        <span class="nav-wordmark">PGL</span>
-    </a>
-    <ul class="nav-links">
-      <li><a href="#manifesto">Manifesto</a></li>
-      <li><a href="#pillars">What We Do</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-
-  <div class="hero">
-    <p class="hero-tag">Civilian Intelligence — Public Record</p>
-    <h1 class="hero-title">
-      Pebble<br>Goose<span style="color:var(--blue)">.</span><br>Labs<span class="cursor"></span>
-    </h1>
-    <p class="hero-subtitle">
-      We investigate financial fraud and environmental pollution using open-source methodology. We publish everything. The public record belongs to the public.
-    </p>
-    <div class="hero-cta">
-      <a href="#manifesto" class="btn btn-primary">Read the Manifesto</a>
-      <a href="#work" class="btn btn-ghost">See the Work</a>
-    </div>
-    <span class="hero-scroll">Scroll to continue ↓</span>
-  </div>
-
-  <div id="manifesto">
-    <div class="manifesto-inner">
-
-      <div class="section-label reveal">Manifesto</div>
-
-      <div class="manifesto-opening reveal">
-        We believe that neutrality in the face of neutrality in the face of documented harm is a mathematical impossibility. To witness a violation and withhold the data is to facilitate the outcome. We believe that peace is the product of transparency, and justice is the residue of truth. We do not seek permission to observe the public record; we view the light of scrutiny as the only effective disinfectant.
-      </div>
-
-      <div class="manifesto-block reveal">
-        <div class="manifesto-block-title">We reject the following as acts of systemic obscurity</div>
-
-        <div class="manifesto-item">
-          <div class="manifesto-item-label">Complexity as a Shield</div>
-          <div class="manifesto-item-text">We reject jargon to gatekeep public information. If a process cannot be easily accessed and understood by the community it affects, it is designed to exploit them.</div>
-        </div>
-
-        <div class="manifesto-item">
-          <div class="manifesto-item-label">The Bystander's Comfort</div>
-          <div class="manifesto-item-text">We reject the passive observation of the spectator. To stand by while evidence disappears is an invitation for trails to go cold.</div>
-        </div>
-
-        <div class="manifesto-item">
-          <div class="manifesto-item-label">Institutional Blindness</div>
-          <div class="manifesto-item-text">We reject the safety of the status quo. To ignore data because it contradicts power is a betrayal of the craft.</div>
-        </div>
-
-        <div class="manifesto-item">
-          <div class="manifesto-item-label">False Neutrality</div>
-          <div class="manifesto-item-text">We reject the idea that there are two sides to a contaminated well. Factual reality does not require a middle ground, but a witness.</div>
-        </div>
-      </div>
-
-      <div class="manifesto-block reveal">
-        <div class="manifesto-block-title">We adhere to total accountability</div>
-
-        <div class="manifesto-item">
-          <div class="manifesto-item-label">The Unfiltered Voice</div>
-          <div class="manifesto-item-text">We believe in amplifying the data that the vulnerable cannot safely speak, providing a factual shield for those who can only whisper and for those who cannot defend themselves.</div>
-        </div>
-
-        <div class="manifesto-item">
-          <div class="manifesto-item-label">The Open-Source Vow</div>
-          <div class="manifesto-item-text">We release our tools and our findings to everyone. We do not hoard information or methodology — we distribute it as a weapon to the disempowered.</div>
-        </div>
-
-        <div class="manifesto-item">
-          <div class="manifesto-item-label">The Mandate of Inquiry</div>
-          <div class="manifesto-item-text">We do not wait for permission to know the truth. We demand it, legally and relentlessly. We view the work as our primary instruments of discovery.</div>
-        </div>
-
-        <div class="manifesto-item">
-          <div class="manifesto-item-label">Radical Transparency</div>
-          <div class="manifesto-item-text">We hide nothing about our methods. If our research is sound, it can survive the scrutiny of any adversary.</div>
-        </div>
-
-        <div class="manifesto-item">
-          <div class="manifesto-item-label">The Long Game</div>
-          <div class="manifesto-item-text">We do not chase headlines. We build cases. The truth does not expire.</div>
-        </div>
-      </div>
-
-      <div class="manifesto-block reveal">
-        <div class="manifesto-block-title">The only peace worth having</div>
-        <div class="manifesto-closing">
-          <div class="manifesto-closing-item">Silence is the accomplice of complicity. We will not be silent.</div>
-          <div class="manifesto-closing-item">Courage and selflessness are not just qualities, but discipline.</div>
-          <div class="manifesto-closing-item">There is no integrity without transparency, and no resolution without facts.</div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <section id="pillars">
-    <div class="section-label reveal">What We Do</div>
-    <h2 class="section-title reveal">Two pillars.<br>One methodology.</h2>
-    <div class="pillars-grid reveal">
-      <div class="pillar">
-        <div class="pillar-number">01</div>
-        <div class="pillar-title">Financial Fraud & Accountability</div>
-        <div class="pillar-text">
-          We trace money through IRS 990 filings, FEC campaign finance data, state lobbying registries, corporate filings, and FOIA responses. We map shell company networks, document grant fraud, and surface undisclosed lobbying coordination. We specialize in the systematic reconstruction of financial events using authenticated public records. 
-        </div>
-      </div>
-      <div class="pillar">
-        <div class="pillar-number">02</div>
-        <div class="pillar-title">Environmental Pollution & Enforcement Gaps</div>
-        <div class="pillar-text">
-          We document permit violations, illegal discharge incidents, contamination events, and regulatory failures using EPA ECHO, state environmental databases, satellite imagery, and geospatial analysis. We do not take positions on policy. We document what happened, whether enforcement followed, and who bears the burden.
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="work">
-    <div class="section-label reveal">Selected Work</div>
-    <h2 class="section-title reveal">Cases with consequences.</h2>
-
-    <div class="cases-list">
-
-      <div class="case-item reveal">
-        <div class="case-domain">Financial Fraud</div>
-        <div>
-          <div class="case-title">FCCD / Gholston — $24M Medicaid Fraud</div>
-          <div class="case-desc">Identified uncharged parties and shell company networks in a federal Medicaid fraud scheme. Research findings submitted to regulatory bodies as technical documentation of financial irregularities.</div>
-        </div>
-        <div class="case-outcome">Federal Prosecution</div>
-      </div>
-
-      <div class="case-item reveal">
-        <div class="case-domain">Environmental + Financial</div>
-        <div>
-          <div class="case-title">Sunshine Organics — $2.9M Grant Fraud</div>
-          <div class="case-desc">Documented a federal grant issued to an operator with active FDEP violations, a leachate spill, arsenic contamination adjacent to a low-income residential community, and $100k+ in default judgments.</div>
-        </div>
-        <div class="case-outcome">Regulatory Submission</div>
-      </div>
-
-      <div class="case-item reveal">
-        <div class="case-domain">Financial Fraud</div>
-        <div>
-          <div class="case-title">Multi-State Lobbying Network — Voting Legislation</div>
-          <div class="case-desc">Traced a dark money lobbying network across multiple states using IRS filings and state lobbying registries. Analyzed administrative datasets to identify gaps in statutory compliance regarding voter access. Research memorandum delivered to legal counsel.</div>
-        </div>
-        <div class="case-outcome">Litigation Support</div>
-      </div>
-
-      <div class="case-item reveal">
-        <div class="case-domain">Environmental</div>
-        <div>
-          <div class="case-title">Sixt — Unpermitted Fleet Wash Discharge</div>
-          <div class="case-desc">Witness tip to complete evidentiary report in four days. Historical satellite imagery established a discharge timeline going back to 2014. FDEP Oculus confirmed zero permits. Three responsible parties identified.</div>
-        </div>
-        <div class="case-outcome">Evidentiary Report</div>
-      </div>
-
-    </div>
-  </section>
-
-  <section id="about">
-    <div class="section-label reveal">About</div>
-    <h2 class="section-title reveal">What PGL is.</h2>
-
-    <div class="about-grid">
-      <div class="about-text reveal">
-        <p>Pebble Goose Labs is an independent public interest research organization based in Florida. We investigate financial fraud and environmental pollution using open-source methodology and publicly available records — and publish everything freely.</p>
-        <p>We are not a journalism outlet. We are not a law firm. We are not an advocacy organization. We are investigative infrastructure — the connective tissue between raw public records and the communities, lawyers, journalists, and regulators who need them.</p>
-        <p>All tools are released under AGPL licensing. All findings are published openly. No one pays us to find out what their government is doing. That is the point.</p>
-        <p>PGL does not advocate. PGL does not lobby. PGL does not tell anyone what to do with what it finds. PGL follows the records. Regulators, courts, and the public decide what comes next.</p>
-      </div>
-
-      <div class="about-stats reveal">
-        <div class="stat">
-          <div class="stat-number">$24M+</div>
-          <div class="stat-label">Fraud documented in federal cases</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number">4 days</div>
-          <div class="stat-label">Witness tip to complete evidentiary report</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number">100%</div>
-          <div class="stat-label">Open source. Always.</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number">$0</div>
-          <div class="stat-label">Cost to access PGL's published findings</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <div class="section-label">Contact</div>
-    <h2 class="contact-title reveal">Have a tip?<br>Have a lead?</h2>
-    <p class="contact-sub reveal">
-      Community tips are how investigations start. If you have witnessed financial fraud or environmental pollution and it can be corroborated through public records, reach out.
-    </p>
-    <div class="contact-links reveal">
-      <a href="mailto:kwong.osint@proton.me" class="btn btn-primary">kwong.osint@proton.me</a>
-      <a href="https://github.com/kwongosint" class="btn btn-ghost" target="_blank">GitHub</a>
-    </div>
-  </section>
-
-  <footer>
-    <span>© 2026 Pebble Goose Labs</span>
-    <span>Open Source. Transparent. Not For Sale. Ever.</span>
-    <span>Florida, USA</span>
-  </footer>
-
-  <script>
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    reveals.forEach(el => observer.observe(el));
-  </script>
-
-</body>
-</html>
+ 
