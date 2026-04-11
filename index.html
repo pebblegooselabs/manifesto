@@ -477,47 +477,58 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .about-grid {
+    /* SIDE-BY-SIDE LAYOUT FOR ABOUT SECTION */
+.about-content {
+  display: flex;
+  align-items: flex-start; /* Keeps the text aligned to the top of the image */
+  gap: 60px;               /* Space between the map and your text */
+  margin-top: 40px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.recon-frame {
+  flex: 0 0 450px;         /* Keeps the satellite image at a fixed size */
+  height: 350px;
+  position: relative;
+  border: 1px solid rgba(0, 242, 255, 0.2);
+  background: #000;
+  overflow: hidden;
+}
+
+.about-text {
+  flex: 1;                 /* Let the text fill the remaining right-side space */
+}
+
+/* MOBILE FIX: Stacks them vertically on phones */
+@media (max-width: 900px) {
+  .about-content {
+    flex-direction: column;
+    align-items: center;
+  }
+  .recon-frame {
+    width: 100%;
+    flex: none;
+  }
+}
+
+     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 4rem;
+      gap: 3rem;
       margin-top: 3rem;
     }
 
-    .about-text {
+     .about-text p {
       color: var(--off-white);
       font-size: 0.9rem;
-      line-height: 1.9;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
     }
 
-    .about-text p {
-      margin-bottom: 1.2rem;
-    }
-
-    .about-stats {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
-    .stat {
-      border-left: 2px solid var(--blue);
-      padding-left: 1.5rem;
-    }
-
-    .stat-number {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 2rem;
-      color: var(--white);
-      line-height: 1;
-      margin-bottom: 0.3rem;
-    }
-
-    .stat-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--off-white);
+     .about-text p:last-child {
+      margin-bottom: 0;
     }
 
     /* CONTACT */
