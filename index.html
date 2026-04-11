@@ -623,12 +623,12 @@
 
     .map-lens-container {
   position: absolute;
-  right: 5%;
-  top: 50%;
+  right: -8%;      /* Pushed it slightly more off-screen to save your title */
+  top: 45%;        /* Adjusted to center it better with the larger size */
   transform: translateY(-50%);
-  width: 450px;
-  height: 450px;
-  z-index: 1;
+  width: 600px;    /* Increased from 500px */
+  height: 600px;   /* Increased from 500px */
+  z-index: 5;
 }
 
 .map-lens {
@@ -671,14 +671,19 @@
 
 .coordinates {
   position: absolute;
-  bottom: 20px;
-  right: 20px;
+  bottom: 20%;      /* Moved up from 15% to clear the curve */
+  left: 50%;
+  transform: translateX(-50%);
   font-family: 'Courier New', monospace;
-  font-size: 10px;
+  font-size: 13px;  /* Slightly bigger for readability */
   color: var(--blue);
-  background: rgba(0, 0, 0, 0.7);
-  padding: 5px;
-  z-index: 3;
+  background: rgba(0, 20, 30, 0.8);
+  padding: 6px 12px;
+  border: 1px solid var(--blue);
+  text-shadow: 0 0 5px var(--blue);
+  z-index: 10;
+  white-space: nowrap;
+  letter-spacing: 1px;
 }
 
 @keyframes mapDrift {
@@ -710,8 +715,9 @@
     <div class="map-lens-container">
   <div class="map-lens">
     <div class="scanning-grid"></div>
-    <img src="map.jpg.jpg" class="satellite-img" alt="Satellite Recon">    <div class="coordinates">
-      27.994402° N, 82.594360° W
+    <img src="map.jpg.jpg" class="satellite-img" alt="Satellite Recon">    
+  <div class="coordinates">
+      <span>40.7128° N, 74.0060° W</span>
     </div>
   </div>
   <div class="lens-glitch"></div>
