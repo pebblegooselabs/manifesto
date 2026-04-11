@@ -475,15 +475,15 @@
     /* ABOUT */
     #about {
       border-bottom: 1px solid var(--border);
+      padding: 8rem 3rem; /* Extra padding for breathing room */
     }
     
     .about-content {
       display: flex;
       align-items: center;    /* Vertically centers the image and text */
       gap: 5rem;
-      max-width: 100%;        /* Stops the "skinny" look */
-      margin: 6rem auto;
-      padding: 0 8%;          /* Adjust this % to control how wide the whole section is */
+      max-width: 1400px;        /* Stops the "skinny" look */
+      margin: 0 auto;
     }
 
     .recon-frame {
@@ -498,14 +498,13 @@
     .about-text {
       flex: 1;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
     }
 
     .about-text p {
-      font-size: 1.1rem;
+      color: var(--off-white) !important;
+      font-size: 1.15rem; !important;
       line-height: 1.8;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
       width: 100%;            /* Ensures lines stretch across the right side */
     }
       .about-text p:last-child {
@@ -517,9 +516,11 @@
   .about-content {
     flex-direction: column;
     align-items: center;
+    gap: 3rem;
   }
   .recon-frame {
     width: 100%;
+    max-width: 500px;
     flex: none;
   }
 }
@@ -918,16 +919,15 @@
 
   <!-- ABOUT -->
   <section id="about">
-  <div class="about-content">
-    <div class="recon-frame">
-      <div class="corner-brackets"></div>
-      <img src="map.jpg.jpg" class="recon-img" alt="Intelligence Asset">
-      <div class="scan-bar"></div>
-      <div class="asset-tag">REF_ID: AREA_51_JAX</div>
-    </div>
+    <div class="about-content">
+      <div class="recon-frame">
+        <div class="corner-brackets"></div>
+        <img src="map.jpg.jpg" class="recon-img" alt="Intelligence Asset">
+        <div class="scan-bar"></div>
+        <div class="asset-tag">REF_ID: AREA_51_JAX</div>
+      </div>
 
-    <div class="about-grid">
-      <div class="about-text reveal">
+      <div class="about-text">
         <p>All tools are released under AGPL licensing. All findings are published openly. No one pays us to find out what their government is doing. That is the point.</p>
         <p>DIOMEDES does not advocate. DIOMEDES does not lobby. DIOMEDES does not tell anyone what to do with what it finds. DIOMEDES follows the records. Regulators, courts, and the public decide what comes next.</p>
       </div>
