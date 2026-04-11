@@ -620,6 +620,49 @@
       .case-outcome { align-self: auto; }
       footer { flex-direction: column; gap: 0.5rem; text-align: center; }
     }
+
+    .hero-visual {
+  position: absolute;
+  right: 5%;
+  top: 40%;
+  width: 300px;
+  z-index: 0; /* Keeps it behind the text if they overlap */
+}
+
+.bust-frame {
+  position: relative;
+  animation: float 6s ease-in-out infinite;
+}
+
+.greek-bust {
+  width: 100%;
+  /* This filter makes any image look like a blue glowing hologram */
+  filter: brightness(0.8) sepia(1) hue-rotate(185deg) saturate(4) contrast(1.5);
+  opacity: 0.5;
+}
+
+.scan-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #00f2ff; /* Your signature blue */
+  box-shadow: 0 0 15px #00f2ff;
+  animation: scanning 3s linear infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes scanning {
+  0% { top: 0%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
   </style>
 </head>
 <body>
@@ -641,6 +684,14 @@
 
   <!-- HERO -->
   <div class="hero">
+    <div class="hero">
+      <div class="hero-visual">
+        <div class="bust-frame">
+          <img src="logo.png" class="greek-bust" alt="Diomedes Bust">
+          <div class="scan-bar"></div>
+        </div>
+      </div>
+      <p class="hero-tag">Civilian Intelligence — Public Record</p>
     <p class="hero-tag">Civilian Intelligence — Public Record</p>
     <h1 class="hero-title">
       DIOMEDES<span style="color:var(--blue)">.</span><br>RESEARCH<span class="cursor"></span>
