@@ -477,18 +477,17 @@
       border-bottom: 1px solid var(--border);
     }
 
-    /* SIDE-BY-SIDE LAYOUT FOR ABOUT SECTION */
-.about-content {
+    .about-content {
   display: flex;
   align-items: flex-start;
-  gap: 5rem;               /* Increased gap for a cleaner OSINT look */
+  gap: 5rem;
   margin-top: 4rem;
-  max-width: 100%;       /* Made it wider to stop the "skinny" look */
-  padding: 0 5%;         /* Keeps it from hitting the screen edges */
+  max-width: 100%;    /* Fills the screen */
+  padding: 0 5%;      /* Breathing room on the sides */
 }
 
 .recon-frame {
-  flex: 0 0 500px;         /* Anchored the image size */
+  flex: 0 0 450px;    /* Fixed width for the satellite asset */
   height: 400px;
   position: relative;
   border: 1px solid rgba(0, 242, 255, 0.2);
@@ -497,14 +496,13 @@
 }
 
 .about-text {
-  flex: 1;                 /* This pushes the text to take up all the extra space */
-  min-width: 300px;        /* Prevents it from getting too thin */
+  flex: 1;            /* This makes the text take up the rest of the width */
 }
 
 .about-text p {
-  font-size: 1.1rem;       /* Slightly larger text to fill the space better */
+  max-width: 100% !important; /* Forces the skinny column to widen */
+  font-size: 1.1rem;
   line-height: 1.8;
-  max-width: 100%;        /* Limits line length for better readability */
 }
 
 /* MOBILE FIX: Stacks them vertically on phones */
