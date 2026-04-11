@@ -476,42 +476,41 @@
     #about {
       border-bottom: 1px solid var(--border);
     }
+    
+    .about-content {
+      display: flex;
+      align-items: center;    /* Vertically centers the image and text */
+      gap: 5rem;
+      max-width: 100%;        /* Stops the "skinny" look */
+      margin: 6rem auto;
+      padding: 0 8%;          /* Adjust this % to control how wide the whole section is */
+    }
 
-    /* This makes the container stretch the full width of your site */
-.about-content {
-  display: flex;
-  align-items: center;
-  gap: 5rem;
-  max-width: 1400px; /* Adjust this if you want it even wider */
-  margin: 6rem auto;
-  padding: 0 5%;
-}
+    .recon-frame {
+      flex: 0 0 450px;        /* Keeps the image size steady */
+      height: 350px;
+      position: relative;
+      border: 1px solid rgba(0, 242, 255, 0.2);
+      background: #000;
+      overflow: hidden;
+    }
 
-/* This keeps your satellite image from shrinking */
-.recon-frame {
-  flex: 0 0 450px;
-  height: 350px;
-  position: relative;
-  border: 1px solid rgba(0, 242, 255, 0.2);
-  background: #000;
-  overflow: hidden;
-  align-self: center;
-}
+    .about-text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
 
-/* This is the magic part that stops the "skinny" look */
-.about-text {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.about-text p {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 1.5rem;
-  width: 100%;     /* Ensures the paragraph uses the full expanded width */
-}
+    .about-text p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+      width: 100%;            /* Ensures lines stretch across the right side */
+    }
+      .about-text p:last-child {
+        margin-bottom: 0;
+      }
 
 /* MOBILE FIX: Stacks them vertically on phones */
 @media (max-width: 900px) {
@@ -525,23 +524,23 @@
   }
 }
 
-     .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      margin-top: 3rem;
-    }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 3rem;
+  }
 
-     .about-text p {
-      color: var(--off-white);
-      font-size: 0.9rem;
-      line-height: 1.8;
-      margin-bottom: 1.5rem;
-    }
+  .about-text p {
+    color: var(--off-white);
+    font-size: 0.9rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
 
-     .about-text p:last-child {
-      margin-bottom: 0;
-    }
+  .about-text p:last-child {
+    margin-bottom: 0;
+  }
 
     /* CONTACT */
     #contact {
