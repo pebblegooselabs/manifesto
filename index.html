@@ -477,32 +477,38 @@
       border-bottom: 1px solid var(--border);
     }
 
-    .about-content {
+    /* This makes the container stretch the full width of your site */
+.about-content {
   display: flex;
   align-items: flex-start;
-  gap: 5rem;
-  margin-top: 4rem;
-  max-width: 100%;    /* Fills the screen */
-  padding: 0 5%;      /* Breathing room on the sides */
+  gap: 4rem;
+  max-width: 1200px; /* Adjust this if you want it even wider */
+  margin: 4rem auto;
+  padding: 0 2rem;
 }
 
+/* This keeps your satellite image from shrinking */
 .recon-frame {
-  flex: 0 0 450px;    /* Fixed width for the satellite asset */
-  height: 400px;
+  flex: 0 0 450px;
+  height: 350px;
   position: relative;
   border: 1px solid rgba(0, 242, 255, 0.2);
   background: #000;
   overflow: hidden;
 }
 
+/* This is the magic part that stops the "skinny" look */
 .about-text {
-  flex: 1;            /* This makes the text take up the rest of the width */
+  flex-grow: 1;    /* Forces the text to expand and fill the right side */
+  flex-basis: 0;   /* Resets any weird width limits */
+  min-width: 300px;
 }
 
 .about-text p {
-  max-width: 100% !important; /* Forces the skinny column to widen */
   font-size: 1.1rem;
   line-height: 1.8;
+  margin-bottom: 1.5rem;
+  width: 100%;     /* Ensures the paragraph uses the full expanded width */
 }
 
 /* MOBILE FIX: Stacks them vertically on phones */
