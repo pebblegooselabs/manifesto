@@ -691,6 +691,32 @@
   50% { transform: scale(1.2) rotate(2deg); }
   100% { transform: scale(1.1) rotate(0deg); }
 }
+/* Mobile Optimization for the Satellite Lens */
+@media (max-width: 768px) {
+  .map-lens-container {
+    position: relative; /* Switches from floating to sitting in the layout */
+    width: 300px;       /* Much smaller for phone screens */
+    height: 300px;
+    margin: 20px auto;  /* Centers it horizontally */
+    right: auto;        /* Resets the desktop positioning */
+    top: auto;
+    transform: none;    /* Resets the desktop centering */
+    order: -1;          /* Pushes it ABOVE the text if using flex, or just keeps it tidy */
+  }
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-top: 100px; /* Gives space for the nav */
+  }
+
+  .coordinates {
+    font-size: 10px;    /* Smaller text for smaller lens */
+    bottom: 15%;
+  }
+}
   </style>
 </head>
 <body>
