@@ -480,11 +480,11 @@
     /* This makes the container stretch the full width of your site */
 .about-content {
   display: flex;
-  align-items: flex-start;
-  gap: 4rem;
-  max-width: 1200px; /* Adjust this if you want it even wider */
-  margin: 4rem auto;
-  padding: 0 2rem;
+  align-items: center;
+  gap: 5rem;
+  max-width: 1400px; /* Adjust this if you want it even wider */
+  margin: 6rem auto;
+  padding: 0 5%;
 }
 
 /* This keeps your satellite image from shrinking */
@@ -495,13 +495,15 @@
   border: 1px solid rgba(0, 242, 255, 0.2);
   background: #000;
   overflow: hidden;
+  align-self: center;
 }
 
 /* This is the magic part that stops the "skinny" look */
 .about-text {
-  flex-grow: 1;    /* Forces the text to expand and fill the right side */
-  flex-basis: 0;   /* Resets any weird width limits */
-  min-width: 300px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .about-text p {
