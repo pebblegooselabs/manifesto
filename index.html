@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>DIOMEDES Research</title>
+  <title>Pebble Goose Labs</title>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@300;400;600&display=swap" rel="stylesheet"/>
   <style>
     :root {
@@ -637,4 +637,53 @@
 </head>
 <body>
 
- 
+  <nav>
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-dots">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+      </div>
+      <div class="nav-wordmark">PGL</div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#manifesto">Manifesto</a></li>
+      <li><a href="#pillars">Pillars</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero" id="hero">
+    <div class="hero-tag">// WELCOME TO THE FUTURE OF DESIGN & TECH</div>
+    <h1 class="hero-title">We are <span>Pebble Goose Labs</span>, a new kind of design and technology studio.</h1>
+    <p class="hero-subtitle">At PGL, we blend creativity and code to craft digital experiences that are not only beautiful but also meaningful. We believe in the power of design and technology to shape the future, and we're here to make that future a reality.</p>
+    <div class="hero-cta">
+      <a href="#work" class="btn btn-primary">See Our Work</a>
+      <a href="#contact" class="btn btn-ghost">Get In Touch</a>
+    </div>
+    <div class="hero-scroll">Scroll Down</div>
+  </section>
+
+  <!-- Additional sections (Manifesto, Pillars, Work, About, Contact) would go here -->
+
+  <footer>
+    &copy; 2024 Pebble Goose Labs. All rights reserved.
+  </footer>
+
+  <script>
+    // Reveal on scroll
+    const revealElements = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    revealElements.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html> 
