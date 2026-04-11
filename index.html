@@ -621,14 +621,14 @@
       footer { flex-direction: column; gap: 0.5rem; text-align: center; }
     }
 
-    .map-lens-container {
+.map-lens-container {
   position: absolute;
-  right: 5%;
+  right: 2%; /* Move it slightly closer to the edge */
   top: 50%;
   transform: translateY(-50%);
-  width: 450px;
-  height: 450px;
-  z-index: 1;
+  width: 400px; /* Slightly smaller so it fits the layout better */
+  height: 400px;
+  z-index: 5;
 }
 
 .map-lens {
@@ -643,15 +643,16 @@
 }
 
 .satellite-img {
-  position: absolute; /* This is the secret sauce */
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Keeps the map from looking stretched */
-  filter: grayscale(0.3) contrast(1.3) brightness(0.6) hue-rotate(180deg);
-  opacity: 0.9;
-  display: block; /* Ensures it's not being treated as inline text */
+  object-fit: cover;
+  /* This filter turns the green/brown NASA earth into a blue recon map */
+  filter: brightness(0.6) contrast(1.2) grayscale(0.5) sepia(1) hue-rotate(185deg) saturate(5);
+  opacity: 1 !important;
+  z-index: 1;
 }
 
 .scanning-grid {
@@ -671,14 +672,18 @@
 
 .coordinates {
   position: absolute;
-  bottom: 20px;
-  right: 20px;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
   font-family: 'Courier New', monospace;
-  font-size: 10px;
+  font-size: 11px;
   color: var(--blue);
-  background: rgba(0, 0, 0, 0.7);
-  padding: 5px;
-  z-index: 3;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 4px 8px;
+  border: 1px solid var(--blue);
+  z-index: 10;
+  pointer-events: none;
+  text-align: center;
 }
 
 @keyframes mapDrift {
@@ -710,7 +715,7 @@
     <div class="map-lens-container">
   <div class="map-lens">
     <div class="scanning-grid"></div>
-<img src="https://api.mapbox.com/styles/v1/mapbox/satellite-v9/static/-81.6557,30.3322,12,0/600x600?access_token=none" class="satellite-img" alt="Satellite Recon">    <div class="coordinates">
+      <img src="https://www.nasa.gov/wp-content/uploads/2023/03/732535main_florida_full.jpg" class="satellite-img" alt="Satellite Recon">      <span>LAT: 30.3322° N</span><br>
       <span>LAT: 30.3322° N</span><br>
       <span>LON: 81.6557° W</span>
     </div>
