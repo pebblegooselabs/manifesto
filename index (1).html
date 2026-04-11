@@ -3,18 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Pebble Goose Labs</title>
+  <title>DIOMEDES RESEARCH</title>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Space+Mono:wght@400;700&family=IBM+Plex+Mono:wght@300;400;600&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --blue: #1a1aff;
-      --blue-dim: #0f0fcc;
-      --blue-glow: rgba(26, 26, 255, 0.3);
-      --white: #f0f0f0;
-      --off-white: #c8c8d0;
-      --bg: #050508;
-      --bg-mid: #0a0a10;
-      --border: rgba(26, 26, 255, 0.25);
+      --blue: #007070;
+      --blue-dim: #004f4f;
+      --blue-glow: rgba(0, 112, 112, 0.28);
+      --white: #f7f8f4;
+      --off-white: #b9c2bd;
+      --bg: #060807;
+      --bg-mid: #101613;
+      --panel: #151c18;
+      --signal: #c74332;
+      --gold: #d7b45a;
+      --border: rgba(247, 248, 244, 0.16);
     }
 
     *, *::before, *::after {
@@ -28,7 +31,12 @@
     }
 
     body {
-      background-color: var(--bg);
+      background:
+        linear-gradient(90deg, rgba(247,248,244,0.035) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(247,248,244,0.025) 1px, transparent 1px),
+        radial-gradient(circle at 80% 12%, rgba(0,112,112,0.22), transparent 34rem),
+        linear-gradient(135deg, #060807 0%, #101613 48%, #071211 100%);
+      background-size: 72px 72px, 72px 72px, auto, auto;
       color: var(--white);
       font-family: 'IBM Plex Mono', monospace;
       font-size: 15px;
@@ -42,15 +50,12 @@
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0,0,0,0.03) 2px,
-        rgba(0,0,0,0.03) 4px
-      );
+      background:
+        repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.16) 3px, rgba(0,0,0,0.16) 4px),
+        linear-gradient(90deg, rgba(199,67,50,0.05), transparent 32%, rgba(215,180,90,0.05));
       pointer-events: none;
       z-index: 1000;
+      mix-blend-mode: soft-light;
     }
 
     /* NAV */
@@ -61,10 +66,11 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.2rem 3rem;
+      padding: 1rem 3rem;
       border-bottom: 1px solid var(--border);
-      background: rgba(5, 5, 8, 0.92);
-      backdrop-filter: blur(10px);
+      background: rgba(6, 8, 7, 0.88);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 18px 45px rgba(0,0,0,0.26);
     }
 
     .nav-logo {
@@ -74,36 +80,19 @@
       text-decoration: none;
     }
 
-    .nav-logo-dots {
-      display: grid;
-      grid-template-columns: repeat(3, 6px);
-      gap: 3px;
-    }
-
-    .nav-logo-dots span {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--blue);
-      animation: dotPulse 2s ease-in-out infinite;
-    }
-
-    .nav-logo-dots span:nth-child(2) { animation-delay: 0.1s; }
-    .nav-logo-dots span:nth-child(3) { animation-delay: 0.2s; }
-    .nav-logo-dots span:nth-child(4) { animation-delay: 0.3s; }
-    .nav-logo-dots span:nth-child(5) { animation-delay: 0.4s; }
-    .nav-logo-dots span:nth-child(6) { animation-delay: 0.5s; }
-
-    @keyframes dotPulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
+    .nav-logo-img {
+      width: 34px;
+      height: 34px;
+      object-fit: cover;
+      border: 1px solid rgba(247,248,244,0.22);
+      background: var(--blue-dim);
     }
 
     .nav-wordmark {
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.85rem;
       letter-spacing: 0.15em;
-      color: var(--blue);
+      color: var(--white);
       text-transform: uppercase;
     }
 
@@ -140,12 +129,27 @@
     .hero::after {
       content: '';
       position: absolute;
-      top: 20%;
-      right: -10%;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, var(--blue-glow) 0%, transparent 70%);
+      top: 11rem;
+      right: -4rem;
+      width: min(42vw, 560px);
+      height: min(42vw, 560px);
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(135deg, transparent 49.8%, rgba(215,180,90,0.18) 50%, transparent 50.2%),
+        radial-gradient(circle, var(--blue-glow) 0%, transparent 68%);
+      transform: rotate(8deg);
       pointer-events: none;
+    }
+
+    .hero-brand {
+      width: clamp(88px, 12vw, 132px);
+      height: clamp(88px, 12vw, 132px);
+      object-fit: cover;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(247,248,244,0.2);
+      box-shadow: 0 0 0 8px rgba(0,112,112,0.1), 0 22px 60px rgba(0,0,0,0.35);
+      opacity: 0;
+      animation: fadeUp 0.8s ease forwards 0.1s;
     }
 
     .hero-tag {
@@ -167,7 +171,7 @@
       font-family: 'Share Tech Mono', monospace;
       font-size: clamp(2.8rem, 6vw, 5.5rem);
       line-height: 1.05;
-      letter-spacing: -0.01em;
+      letter-spacing: 0;
       color: var(--white);
       margin-bottom: 1rem;
       opacity: 0;
@@ -283,7 +287,7 @@
       padding: 6rem 0;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      background: var(--bg-mid);
+      background: linear-gradient(180deg, rgba(16,22,19,0.96), rgba(9,13,11,0.98));
     }
 
     .manifesto-inner {
@@ -394,14 +398,14 @@
     }
 
     .pillar:hover {
-      background: var(--bg-mid);
+      background: linear-gradient(180deg, rgba(16,22,19,0.96), rgba(9,13,11,0.98));
     }
 
     .pillar-number {
       font-family: 'Share Tech Mono', monospace;
       font-size: 3rem;
       color: var(--blue);
-      opacity: 0.2;
+      opacity: 0.42;
       line-height: 1;
       margin-bottom: 1rem;
     }
@@ -638,11 +642,8 @@
   <!-- NAV -->
   <nav>
     <a href="#" class="nav-logo">
-      <div class="nav-logo-dots">
-        <span></span><span></span><span></span>
-        <span></span><span></span><span></span>
-      </div>
-      <span class="nav-wordmark">PGL</span>
+      <img class="nav-logo-img" src="DIOMEDES%20RESEARCH/logo.png" alt="DIOMEDES RESEARCH logo">
+      <span class="nav-wordmark">DIOMEDES</span>
     </a>
     <ul class="nav-links">
       <li><a href="#manifesto">Manifesto</a></li>
@@ -655,9 +656,10 @@
 
   <!-- HERO -->
   <div class="hero">
+    <img class="hero-brand" src="DIOMEDES%20RESEARCH/logo.png" alt="DIOMEDES RESEARCH logo">
     <p class="hero-tag">Civilian Intelligence — Public Record</p>
     <h1 class="hero-title">
-      Pebble<br>Goose<span style="color:var(--blue)">.</span><br>Labs<span class="cursor"></span>
+      DIOMEDES<span style="color:var(--blue)">.</span><br>RESEARCH<span class="cursor"></span>
     </h1>
     <p class="hero-subtitle">
       We investigate financial fraud and environmental pollution using open-source methodology. We publish everything. The public record belongs to the public.
@@ -815,14 +817,14 @@
   <!-- ABOUT -->
   <section id="about">
     <div class="section-label reveal">About</div>
-    <h2 class="section-title reveal">What PGL is.</h2>
+    <h2 class="section-title reveal">What DIOMEDES is.</h2>
 
     <div class="about-grid">
       <div class="about-text reveal">
-        <p>Pebble Goose Labs is an independent public interest research organization based in Florida. We investigate financial fraud and environmental pollution using open-source methodology and publicly available records — and publish everything freely.</p>
+        <p>DIOMEDES RESEARCH is an independent public interest research organization based in Florida. We investigate financial fraud and environmental pollution using open-source methodology and publicly available records — and publish everything freely.</p>
         <p>We are not a journalism outlet. We are not a law firm. We are not an advocacy organization. We are investigative infrastructure — the connective tissue between raw public records and the communities, lawyers, journalists, and regulators who need them.</p>
         <p>All tools are released under AGPL licensing. All findings are published openly. No one pays us to find out what their government is doing. That is the point.</p>
-        <p>PGL does not advocate. PGL does not lobby. PGL does not tell anyone what to do with what it finds. PGL follows the records. Regulators, courts, and the public decide what comes next.</p>
+        <p>DIOMEDES does not advocate. DIOMEDES does not lobby. DIOMEDES does not tell anyone what to do with what it finds. DIOMEDES follows the records. Regulators, courts, and the public decide what comes next.</p>
       </div>
 
       <div class="about-stats reveal">
@@ -840,7 +842,7 @@
         </div>
         <div class="stat">
           <div class="stat-number">$0</div>
-          <div class="stat-label">Cost to access PGL's published findings</div>
+          <div class="stat-label">Cost to access DIOMEDES' published findings</div>
         </div>
       </div>
     </div>
@@ -861,7 +863,7 @@
 
   <!-- FOOTER -->
   <footer>
-    <span>© 2026 Pebble Goose Labs</span>
+    <span>© 2026 DIOMEDES RESEARCH</span>
     <span>Open Source. Transparent. Not For Sale. Ever.</span>
     <span>Florida, USA</span>
   </footer>
