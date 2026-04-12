@@ -917,8 +917,9 @@ body.high-contrast :is(#manifesto, .pillar, .case-item) {
 
 /* Fixes the nav blur and border */
 body.high-contrast nav {
+  background: #ffffff !important;
   backdrop-filter: none !important;
-  border-bottom: 2px solid #000 !important;
+  border-bottom: 2px solid #000000 !important;
 }
 
 /* Fixes the ghost grey text in Pillars and Case Files */
@@ -945,6 +946,17 @@ body.high-contrast :is(.manifesto-item-text, .manifesto-text, em, strong, i, blo
   color: #000000 !important;
   opacity: 1 !important;
   text-shadow: none !important;
+}
+
+/* Force ALL navigation links and brand text to black */
+body.high-contrast :is(.nav-link, .nav-wordmark, #accessibility-toggle) {
+  color: #000000 !important;
+}
+
+/* The "Master Fix" for all body text that isn't a heading */
+body.high-contrast :is(p, li, span, .pillar-text, .case-desc, .hero-tag, .hero-scroll) {
+  color: #000000 !important;
+  opacity: 1 !important;
 }
 
 </style>
