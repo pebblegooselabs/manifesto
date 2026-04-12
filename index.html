@@ -886,6 +886,35 @@
     text-align: left;
   }
 }
+
+/* ACCESSIBILITY OVERRIDE */
+body.high-contrast {
+  background: #ffffff !important;
+  color: #000000 !important;
+  background-image: none !important; /* Removes the dark grids */
+}
+
+body.high-contrast :is(p, .pillar-text, .case-desc, .manifesto-item-text) {
+  color: #000000 !important;
+  font-family: sans-serif !important; /* Easier to read for many people */
+  font-size: 1.1rem !important;
+}
+
+body.high-contrast :is(.pillar, .case-item, section, nav, footer) {
+  border-color: #000000 !important;
+  background: #ffffff !important;
+}
+
+body.high-contrast .btn-primary {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+body.high-contrast .case-outcome {
+  color: #000 !important;
+  border: 2px solid #000 !important;
+  text-shadow: none !important;
+}
   </style>
 </head>
 <body>
@@ -896,6 +925,9 @@
       <img class="nav-logo-img" src="logo.png" alt="DIOMEDES RESEARCH logo">
       <span class="nav-wordmark">DIOMEDES</span>
     </a>
+    <button id="accessibility-toggle" class="btn-ghost" style="padding: 4px 8px; font-size: 10px; margin-left: 20px;">
+      [ALT_VIEW]
+    </button>
     <ul class="nav-links">
       <li><a href="#manifesto">Manifesto</a></li>
       <li><a href="#pillars">What We Do</a></li>
@@ -1144,6 +1176,18 @@
 
     reveals.forEach(el => observer.observe(el));
   </script>
+
+  const toggle = document.getElementById('accessibility-toggle');
+  toggle.addEventListener('click', () => {
+    document.body.classList.toggle('high-contrast');
+  
+  // Update button text so people know what's happening
+  if (document.body.classList.contains('high-contrast')) {
+    toggle.innerText = '[DARK_VIEW]';
+  } else {
+    toggle.innerText = '[ALT_VIEW]';
+  }
+});
 
 </body>
 </html>
