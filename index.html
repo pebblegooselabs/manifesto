@@ -887,54 +887,46 @@
     }
   }
 
-  /* THE FULL ACCESSIBILITY OVERRIDE */
-/* 1. FORCE BACKGROUNDS TO WHITE */
+  /* 1. Reset all backgrounds to pure white */
   body.high-contrast, 
   body.high-contrast #manifesto, 
   body.high-contrast section,
   body.high-contrast nav,
+  body.high-contrast .manifesto-block,
   body.high-contrast .pillar,
-  body.high-contrast .case-item,
-  body.high-contrast .manifesto-block {
+  body.high-contrast .case-item {
     background: #ffffff !important;
     background-image: none !important;
-    backdrop-filter: none !important;
     color: #000000 !important;
+    backdrop-filter: none !important;
   }
 
-  /* 2. FORCE ALL TEXT TO SOLID BLACK */
+  /* 2. Force ALL text to deep black (links, italics, headings, paragraphs) */
   body.high-contrast :is(
     h1, h2, h3, p, li, span, i, em, strong, blockquote,
     .nav-link, .nav-wordmark, #accessibility-toggle,
     .pillar-title, .pillar-text, 
+    .manifesto-item-label, .manifesto-item-text, .manifesto-text,
     .case-title, .case-desc, .case-domain, .case-details,
-    .manifesto-item-label, .manifesto-item-text, .manifesto-quote, .manifesto-text,
     .hero-tag, .hero-scroll, .section-label, .section-title
   ) {
     color: #000000 !important;
     opacity: 1 !important;
     text-shadow: none !important;
     -webkit-text-stroke: 0px !important;
-    background: transparent !important;
   }
 
-  /* 3. FORCE BORDERS TO SOLID BLACK */
-  body.high-contrast :is(nav, .pillar, .case-item, .manifesto-block, .case-outcome) {
+  /* 3. Fix borders so elements are visible on white */
+  body.high-contrast :is(nav, .pillar, .case-item, .manifesto-block) {
     border: 1px solid #000000 !important;
-    border-color: #000000 !important;
   }
 
-  /* 4. NAVIGATION BAR SPECIFIC FIX */
-  body.high-contrast nav {
-    border-bottom: 2px solid #000000 !important;
-  }
-
-  /* 5. DARKER TEAL FOR LINKS (BETTER CONTRAST) */
+  /* 4. Special dark teal for links (for better contrast) */
   body.high-contrast .case-details a,
-  body.high-contrast a {
+  body.high-contrast .case-details {
     color: #004b4b !important;
     text-decoration: underline !important;
-  } 
+  }
 
   </style>
 </head>
