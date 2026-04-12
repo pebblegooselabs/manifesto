@@ -887,10 +887,11 @@
     }
   }
 
-  /* THE TECHY ACCESSIBILITY OVERRIDE */
+/* THE ULTIMATE ACCESSIBILITY OVERRIDE */
   body.high-contrast, 
   body.high-contrast #manifesto, 
   body.high-contrast section,
+  body.high-contrast nav,
   body.high-contrast .manifesto-block,
   body.high-contrast .pillar,
   body.high-contrast .case-item {
@@ -899,32 +900,42 @@
     color: #000000 !important;
     backdrop-filter: none !important;
   }
-  
-  /* RESTORE THE STRUCTURE: Add sharp black borders to containers */
-  body.high-contrast :is(.pillar, .case-item, .manifesto-block, nav) {
+
+  /* KILL THE GHOST GREY: Force all these specific classes to Black */
+  body.high-contrast :is(
+    .manifesto-item-text, 
+    .manifesto-text, 
+    .pillar-text, 
+    .case-desc, 
+    .nav-link, 
+    i, 
+    em, 
+    p
+  ) {
+    color: #000000 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+    -webkit-text-fill-color: #000000 !important; /* Forces mobile browsers to comply */
+  }
+
+  /* RESTORE TECHY STRUCTURE: Sharp lines instead of floating words */
+  body.high-contrast :is(.pillar, .case-item, .manifesto-block) {
     border: 1px solid #000000 !important;
-    margin-bottom: 10px !important;
-    padding: 20px !important;
+    margin-bottom: 1.5rem !important;
+    padding: 1.5rem !important;
   }
 
-  /* TARGETING THE NAV & ITALICS */
-  body.high-contrast :is(.nav-link, .nav-wordmark, #accessibility-toggle, i, em) {
+  /* HEADINGS: Solid and Bold */
+  body.high-contrast :is(h1, h2, h3, .nav-wordmark, .manifesto-item-label) {
     color: #000000 !important;
-    opacity: 1 !important;
-    text-shadow: none !important;
-  }
-  /* MASTER TEXT OVERRIDE */
-  body.high-contrast :is(h1, h2, h3, p, li, span, .pillar-text, .case-desc, .manifesto-text) {
-    color: #000000 !important;
-    opacity: 1 !important;
-    text-shadow: none !important;
+    font-weight: 900 !important;
+    text-transform: uppercase;
   }
 
-  /* KEEP THE "TECH" BLUE: Make it darker so it passes contrast checks */
-  body.high-contrast :is(.case-details, .case-details a, .section-label, .hero-tag) {
+  /* LINKS: Dark Teal for contrast but still "Techy" */
+  body.high-contrast :is(.case-details a, .hero-tag, .section-label) {
     color: #004b4b !important;
     font-weight: bold !important;
-    text-transform: uppercase;
   }
 
   </style>
