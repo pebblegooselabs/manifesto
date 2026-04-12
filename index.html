@@ -889,7 +889,14 @@
 
   /* THE FULL ACCESSIBILITY OVERRIDE */
   body.high-contrast, 
-  body.high-contrast #manifesto, 
+  body.high-contrast #manifesto,
+  body.high-contrast #manifesto .manifesto-block,
+  body.high-contrast .manifesto-text {
+    background: transparent !important;
+    color: #000000 !important;
+    text-shadow: none !important;
+  }
+
   body.high-contrast section,
   body.high-contrast nav {
     background: #ffffff !important;
@@ -948,9 +955,10 @@
     text-shadow: none !important;
   }
 
-  /* Force ALL navigation links and brand text to black */
-  body.high-contrast :is(.nav-links, .nav-wordmark, #accessibility-toggle) {
+/* Update this block in your style section */
+  body.high-contrast :is(.nav-link, .nav-wordmark, #accessibility-toggle) {
     color: #000000 !important;
+    text-shadow: none !important;
   }
 
   /* The "Master Fix" for all body text that isn't a heading */
