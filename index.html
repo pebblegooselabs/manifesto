@@ -888,100 +888,53 @@
   }
 
   /* THE FULL ACCESSIBILITY OVERRIDE */
+/* 1. FORCE BACKGROUNDS TO WHITE */
   body.high-contrast, 
   body.high-contrast #manifesto, 
   body.high-contrast section,
   body.high-contrast nav,
+  body.high-contrast .pillar,
+  body.high-contrast .case-item,
   body.high-contrast .manifesto-block {
     background: #ffffff !important;
     background-image: none !important;
-    color: #000000 !important;
-  }
-
-  /* Force ALL text elements to Black (Headings, Links, Italics, Paragraphs) */
-  body.high-contrast :is(h1, h2, h3, .nav-link, .nav-wordmark, #accessibility-toggle, i, em, p, .pillar-text, .manifesto-item-text) {
-    color: #000000 !important;
-    opacity: 1 !important;
-    text-shadow: none !important;
-    -webkit-text-stroke: 0px !important; /* Kills any glow effects */
-  }
-
-  /* Fixes the borders so they don't disappear on white */
-  body.high-contrast :is(nav, .pillar, .case-item, .manifesto-block) {
-    border-color: #000000 !important;
-  }
-
-  body.high-contrast section,
-  body.high-contrast nav {
-    background: #ffffff !important;
-    background-image: none !important;
-    color: #000000 !important;
-  }
-
-  /* Fixes ALL headings (Diomedes wordmark, Pillars, Manifesto titles) */
-  body.high-contrast :is(h1, h2, h3, .nav-wordmark, .section-title, .manifesto-item-label, .pillar-title, .case-title) {
-    color: #000000 !important;
-    text-shadow: none !important;
-  }
-
-  /* Fixes the "Scroll to continue" and Section Labels */
-  body.high-contrast :is(.hero-scroll, .section-label, .hero-tag, .case-domain) {
-    color: #000000 !important;
-    opacity: 1 !important;
-  }
-
-  /* Fixes the Manifesto and Pillar backgrounds */
-  body.high-contrast :is(#manifesto, .pillar, .case-item) {
-    background: #ffffff !important;
-    border-color: #000000 !important;
-  }
-
-  /* Fixes the nav blur and border */
-  body.high-contrast nav {
-    background: #ffffff !important;
     backdrop-filter: none !important;
+    color: #000000 !important;
+  }
+
+  /* 2. FORCE ALL TEXT TO SOLID BLACK */
+  body.high-contrast :is(
+    h1, h2, h3, p, li, span, i, em, strong, blockquote,
+    .nav-link, .nav-wordmark, #accessibility-toggle,
+    .pillar-title, .pillar-text, 
+    .case-title, .case-desc, .case-domain, .case-details,
+    .manifesto-item-label, .manifesto-item-text, .manifesto-quote, .manifesto-text,
+    .hero-tag, .hero-scroll, .section-label, .section-title
+  ) {
+    color: #000000 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+    -webkit-text-stroke: 0px !important;
+    background: transparent !important;
+  }
+
+  /* 3. FORCE BORDERS TO SOLID BLACK */
+  body.high-contrast :is(nav, .pillar, .case-item, .manifesto-block, .case-outcome) {
+    border: 1px solid #000000 !important;
+    border-color: #000000 !important;
+  }
+
+  /* 4. NAVIGATION BAR SPECIFIC FIX */
+  body.high-contrast nav {
     border-bottom: 2px solid #000000 !important;
   }
 
-  /* Fixes the ghost grey text in Pillars and Case Files */
-  body.high-contrast :is(.pillar-text, .case-desc, .case-details, .manifesto-item-text, p) {
-    color: #000000 !important;
-    opacity: 1 !important;
-  }
-
-  /* Optional: If you want the blue links/details to be a darker, more readable blue */
-  body.high-contrast .case-details, 
-  body.high-contrast .case-details a {
-    color: #004b4b !important; /* A darker "Ink" teal for better contrast */
-  }
-
-  body.high-contrast :is(.manifesto-quote, blockquote, .manifesto-text, em, strong) {
-    color: #000000 !important;
-    opacity: 1 !important;
-    text-shadow: none !important;
-    background: transparent !important;
-  }
-
-  /* Fixes the Diomedes / Aristos Archaion quote and all emphasis text */
-  body.high-contrast :is(.manifesto-item-text, .manifesto-text, em, strong, i, blockquote) {
-    color: #000000 !important;
-    opacity: 1 !important;
-    text-shadow: none !important;
-  }
-
-/* Update this block in your style section */
-  body.high-contrast :is(.nav-link, .nav-wordmark, #accessibility-toggle) {
-    color: #000000 !important;
-    text-shadow: none !important;
-  }
-
-  /* The "Master Fix" for all body text that isn't a heading */
-  body.high-contrast :is(p, li, span, .pillar-text, .case-desc, .hero-tag, .hero-scroll) {
-    color: #000000 !important;
-    opacity: 1 !important;
-    text-shadow: none !important;
-    background: transparent !important;
-    }
+  /* 5. DARKER TEAL FOR LINKS (BETTER CONTRAST) */
+  body.high-contrast .case-details a,
+  body.high-contrast a {
+    color: #004b4b !important;
+    text-decoration: underline !important;
+  } 
 
   </style>
 </head>
