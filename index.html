@@ -887,33 +887,38 @@
   }
 }
 
-/* ACCESSIBILITY OVERRIDE */
-body.high-contrast {
+/* THE FULL ACCESSIBILITY OVERRIDE */
+body.high-contrast, 
+body.high-contrast #manifesto, 
+body.high-contrast section,
+body.high-contrast nav {
   background: #ffffff !important;
+  background-image: none !important;
   color: #000000 !important;
-  background-image: none !important; /* Removes the dark grids */
 }
 
-body.high-contrast :is(p, .pillar-text, .case-desc, .manifesto-item-text) {
+/* Fixes ALL headings (Diomedes wordmark, Pillars, Manifesto titles) */
+body.high-contrast :is(h1, h2, h3, .nav-wordmark, .section-title, .manifesto-item-label, .pillar-title, .case-title) {
   color: #000000 !important;
-  font-family: sans-serif !important; /* Easier to read for many people */
-  font-size: 1.1rem !important;
-}
-
-body.high-contrast :is(.pillar, .case-item, section, nav, footer) {
-  border-color: #000000 !important;
-  background: #ffffff !important;
-}
-
-body.high-contrast .btn-primary {
-  background: #000 !important;
-  color: #fff !important;
-}
-
-body.high-contrast .case-outcome {
-  color: #000 !important;
-  border: 2px solid #000 !important;
   text-shadow: none !important;
+}
+
+/* Fixes the "Scroll to continue" and Section Labels */
+body.high-contrast :is(.hero-scroll, .section-label, .hero-tag, .case-domain) {
+  color: #000000 !important;
+  opacity: 1 !important;
+}
+
+/* Fixes the Manifesto and Pillar backgrounds */
+body.high-contrast :is(#manifesto, .pillar, .case-item) {
+  background: #ffffff !important;
+  border-color: #000000 !important;
+}
+
+/* Fixes the nav blur and border */
+body.high-contrast nav {
+  backdrop-filter: none !important;
+  border-bottom: 2px solid #000 !important;
 }
   </style>
 </head>
