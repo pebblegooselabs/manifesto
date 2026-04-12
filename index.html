@@ -932,6 +932,14 @@ body.high-contrast .case-details,
 body.high-contrast .case-details a {
   color: #004b4b !important; /* A darker "Ink" teal for better contrast */
 }
+
+body.high-contrast :is(.manifesto-quote, blockquote, .manifesto-text, em, strong) {
+  color: #000000 !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+  background: transparent !important;
+}
+
   </style>
 </head>
 <body>
@@ -943,7 +951,7 @@ body.high-contrast .case-details a {
       <span class="nav-wordmark">DIOMEDES</span>
     </a>
     <button id="accessibility-toggle" class="btn-ghost" style="padding: 4px 8px; font-size: 10px; margin-left: 20px;">
-      [ALT_VIEW]
+      [ACCESSIBILITY]
     </button>
     <ul class="nav-links">
       <li><a href="#manifesto">Manifesto</a></li>
@@ -1201,7 +1209,7 @@ toggle.addEventListener('click', () => {
   if (document.body.classList.contains('high-contrast')) {
     toggle.innerText = '[DARK_VIEW]';
   } else {
-    toggle.innerText = '[ALT_VIEW]';
+    toggle.innerText = '[ACCESSIBILITY]';
   }
 });
   </script>
