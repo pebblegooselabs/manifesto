@@ -920,6 +920,18 @@ body.high-contrast nav {
   backdrop-filter: none !important;
   border-bottom: 2px solid #000 !important;
 }
+
+/* Fixes the ghost grey text in Pillars and Case Files */
+body.high-contrast :is(.pillar-text, .case-desc, .case-details, .manifesto-item-text, p) {
+  color: #000000 !important;
+  opacity: 1 !important;
+}
+
+/* Optional: If you want the blue links/details to be a darker, more readable blue */
+body.high-contrast .case-details, 
+body.high-contrast .case-details a {
+  color: #004b4b !important; /* A darker "Ink" teal for better contrast */
+}
   </style>
 </head>
 <body>
