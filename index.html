@@ -820,6 +820,72 @@
   border: none;
   filter: invert(0.9) hue-rotate(180deg) brightness(0.9); /* This "Dark Modes" the Google Sheet */
 }
+
+.cases-list {
+  margin-top: 3rem;
+  border-top: 1px solid var(--border);
+}
+
+.case-item {
+  display: grid;
+  grid-template-columns: 100px 1fr 120px;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.3s;
+}
+
+.case-item:hover {
+  background: rgba(0, 112, 112, 0.05);
+}
+
+.case-domain {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--blue);
+  border: 1px solid var(--blue);
+  height: fit-content;
+  padding: 2px 5px;
+  text-align: center;
+}
+
+.case-title {
+  font-size: 1rem;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.case-desc {
+  font-size: 0.9rem;
+  color: var(--off-white);
+  margin-bottom: 0.5rem;
+}
+
+.case-details {
+  font-size: 0.8rem;
+  color: var(--blue);
+  opacity: 0.8;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.case-outcome {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 1px;
+  color: var(--blue);
+  text-align: right;
+  opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+  .case-item {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .case-outcome {
+    text-align: left;
+  }
+}
   </style>
 </head>
 <body>
@@ -833,6 +899,7 @@
     <ul class="nav-links">
       <li><a href="#manifesto">Manifesto</a></li>
       <li><a href="#pillars">What We Do</a></li>
+      <li><a href="#work">Work</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -965,6 +1032,51 @@
   </section>
   <!-- WORK -->
   <section id="work">
+    <div class="section-label reveal">Work</div>
+  <h2 class="section-title reveal">Case files.<br>Verified leads.</h2>
+  
+  <div class="cases-list">
+    <div class="case-item reveal">
+      <div class="case-domain">SAT-INT</div>
+      <div class="case-content">
+        <h3 class="case-title">Case File 001 — Industrial Wastewater Discharge (West Palm Beach, FL)</h3>
+        <p class="case-desc">Documented unpermitted wastewater discharge into stormwater systems using geospatial analysis and FDEP database review.</p>
+        <div class="case-details">Verified active discharge pathway from fleet wash operations; no corresponding industrial permit on file.</div>
+      </div>
+      <div class="case-outcome">REPORT READY</div>
+    </div>
+
+    <div class="case-item reveal">
+      <div class="case-domain">FIN-INT</div>
+      <div class="case-content">
+        <h3 class="case-title">Case File 002 — Medicaid Fraud Network Mapping (FCCD)</h3>
+        <p class="case-desc">Mapped an interconnected network of corporate entities sharing addresses and registered agents using Sunbiz and NPI registries.</p>
+        <div class="case-details">Identified entities and patterns omitted from initial enforcement actions.</div>
+      </div>
+      <div class="case-outcome">ACTIVE FILE</div>
+    </div>
+
+    <div class="case-item reveal">
+      <div class="case-domain">PUB-REC</div>
+      <div class="case-content">
+        <h3 class="case-title">Case File 003 — Multi-State Lobbying Activity</h3>
+        <p class="case-desc">Analyzed IRS 990 filings and state lobbying disclosures to identify model legislation patterns across jurisdictions.</p>
+        <div class="case-details">Confirmed temporal alignment between lobbying activity and legislative introductions across multiple states.</div>
+      </div>
+      <div class="case-outcome">CASE STUDY</div>
+    </div>
+
+    <div class="case-item reveal">
+      <div class="case-domain">ENV-INT</div>
+      <div class="case-content">
+        <h3 class="case-title">Case File 004 — Environmental Compliance Review (Sunshine Organics)</h3>
+        <p class="case-desc">Longitudinal review of FDEP enforcement and site-level satellite imagery regarding operational compliance history.</p>
+        <div class="case-details">Documented spill events and limited regulatory escalation over a multi-year period.</div>
+      </div>
+      <div class="case-outcome">REPORT READY</div>
+    </div>
+  </div>
+</section>
     <div class="data-terminal-wrapper">
   <div class="terminal-header">
     <span class="terminal-title">DATABASE_ACCESS: DEATH_ROW_ROSTER_USA</span>
