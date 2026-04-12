@@ -1175,11 +1175,10 @@ body.high-contrast .case-outcome {
     }, { threshold: 0.1 });
 
     reveals.forEach(el => observer.observe(el));
-  </script>
 
-  const toggle = document.getElementById('accessibility-toggle');
-  toggle.addEventListener('click', () => {
-    document.body.classList.toggle('high-contrast');
+    const toggle = document.getElementById('accessibility-toggle');
+toggle.addEventListener('click', () => {
+  document.body.classList.toggle('high-contrast');
   
   // Update button text so people know what's happening
   if (document.body.classList.contains('high-contrast')) {
@@ -1188,6 +1187,7 @@ body.high-contrast .case-outcome {
     toggle.innerText = '[ALT_VIEW]';
   }
 });
+  </script>
 
 </body>
 </html>
