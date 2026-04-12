@@ -890,16 +890,27 @@
   /* THE FULL ACCESSIBILITY OVERRIDE */
   body.high-contrast, 
   body.high-contrast #manifesto, 
-  body.high-contrast .manifesto-block, 
-  body.high-contrast .manifesto-text,
-  body.high-contrast i, 
-  body.high-contrast .nav-link { /* Notice the singular .nav-link! */
-      background: #ffffff !important;
-      color: #000000 !important;
-      opacity: 1 !important;
-      text-shadow: none !important;
+  body.high-contrast section,
+  body.high-contrast nav,
+  body.high-contrast .manifesto-block {
+    background: #ffffff !important;
+    background-image: none !important;
+    color: #000000 !important;
   }
-  
+
+  /* Force ALL text elements to Black (Headings, Links, Italics, Paragraphs) */
+  body.high-contrast :is(h1, h2, h3, .nav-link, .nav-wordmark, #accessibility-toggle, i, em, p, .pillar-text, .manifesto-item-text) {
+    color: #000000 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+    -webkit-text-stroke: 0px !important; /* Kills any glow effects */
+  }
+
+  /* Fixes the borders so they don't disappear on white */
+  body.high-contrast :is(nav, .pillar, .case-item, .manifesto-block) {
+    border-color: #000000 !important;
+  }
+
   body.high-contrast section,
   body.high-contrast nav {
     background: #ffffff !important;
