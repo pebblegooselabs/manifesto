@@ -888,7 +888,16 @@
   }
 
   /* THE FULL ACCESSIBILITY OVERRIDE */
-  body.high-contrast, 
+  body.high-contrast,
+  body.high-contrast nav,
+  body.high-contrast .nav-link, 
+  body.high-contrast .nav-wordmark,
+  body.high-contrast #accessibility-toggle {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+  }
   body.high-contrast #manifesto, 
   body.high-contrast section,
   body.high-contrast nav {
@@ -896,6 +905,16 @@
     background-image: none !important;
     color: #000000 !important;
   }
+
+  /* 2. Force the Diomedes Quote (even with the <i> tag) to Black */
+  body.high-contrast i,
+  body.high-contrast .manifesto-item-text i,
+  body.high-contrast .manifesto-text i {
+    color: #000000 !important;
+    font-style: italic; /* Keeps it pretty, just makes it readable! */
+    opacity: 1 !important;
+    text-shadow: none !important;
+}
 
   /* Fixes ALL headings (Diomedes wordmark, Pillars, Manifesto titles) */
   body.high-contrast :is(h1, h2, h3, .nav-wordmark, .section-title, .manifesto-item-label, .pillar-title, .case-title) {
