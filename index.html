@@ -887,24 +887,10 @@
     }
   }
 
-  /* THE FULL ACCESSIBILITY OVERRIDE */
-  body.high-contrast * {
-    font-family: 'Arial', sans-serif !important;
-    font-size: 16px !important;
-    line-height: 1.5 !important;
-    color: #000 !important;
-    background: #ffffff !important;
-    border: none !important;
-    box-shadow: none !important;
-    text-shadow: none !important;
-    filter: none !important;
-  }
-
-  /* THE CLEAN ACCESSIBILITY OVERRIDE */
+  /* THE TECHY ACCESSIBILITY OVERRIDE */
   body.high-contrast, 
   body.high-contrast #manifesto, 
   body.high-contrast section,
-  body.high-contrast nav,
   body.high-contrast .manifesto-block,
   body.high-contrast .pillar,
   body.high-contrast .case-item {
@@ -913,31 +899,32 @@
     color: #000000 !important;
     backdrop-filter: none !important;
   }
+  
+  /* RESTORE THE STRUCTURE: Add sharp black borders to containers */
+  body.high-contrast :is(.pillar, .case-item, .manifesto-block, nav) {
+    border: 1px solid #000000 !important;
+    margin-bottom: 10px !important;
+    padding: 20px !important;
+  }
 
-  /* TARGETING THE STUBBORN GHOSTS: The Nav and the Italics */
-  body.high-contrast .nav-link,
-  body.high-contrast .nav-wordmark,
-  body.high-contrast #accessibility-toggle,
-  body.high-contrast i,
-  body.high-contrast em,
-  body.high-contrast .manifesto-item-text i {
+  /* TARGETING THE NAV & ITALICS */
+  body.high-contrast :is(.nav-link, .nav-wordmark, #accessibility-toggle, i, em) {
     color: #000000 !important;
     opacity: 1 !important;
     text-shadow: none !important;
-    font-style: italic !important; /* Ensures the Greek stays italic but black */
   }
-
-  /* MASTER TEXT OVERRIDE: Paragraphs, Lists, and Spans */
+  /* MASTER TEXT OVERRIDE */
   body.high-contrast :is(h1, h2, h3, p, li, span, .pillar-text, .case-desc, .manifesto-text) {
     color: #000000 !important;
     opacity: 1 !important;
     text-shadow: none !important;
   }
 
-  /* Optional: Darken the teal links so they don't vanish */
-  body.high-contrast .case-details,
-  body.high-contrast .case-details a {
+  /* KEEP THE "TECH" BLUE: Make it darker so it passes contrast checks */
+  body.high-contrast :is(.case-details, .case-details a, .section-label, .hero-tag) {
     color: #004b4b !important;
+    font-weight: bold !important;
+    text-transform: uppercase;
   }
 
   </style>
