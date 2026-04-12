@@ -787,6 +787,39 @@
   0% { top: 0; }
   100% { top: 100%; }
 }
+
+.data-terminal-wrapper {
+  width: 100%;
+  margin: 2rem 0;
+  border: 1px solid var(--blue);
+  background: #000;
+  box-shadow: 0 0 20px rgba(0, 112, 112, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.terminal-header {
+  background: var(--blue-dim);
+  padding: 8px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--blue);
+}
+
+.terminal-title {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--white);
+}
+
+.data-terminal-wrapper iframe {
+  width: 100%;
+  height: 600px; /* Adjust height as needed */
+  border: none;
+  filter: invert(0.9) hue-rotate(180deg) brightness(0.9); /* This "Dark Modes" the Google Sheet */
+}
   </style>
 </head>
 <body>
@@ -916,7 +949,18 @@
       </div>
     </div>
   </section>
-
+  <!-- WORK -->
+  <section id="work">
+    <div class="data-terminal-wrapper">
+  <div class="terminal-header">
+    <span class="terminal-title">DATABASE_ACCESS: DEATH_ROW_ROSTER_USA</span>
+    <div class="terminal-controls">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+  <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0eS5sOnWZFkmd4_1a7PweOtgxWYx1lvjedJ9UUUdajKOCPNpoZ3LVAGFAu6LA70hKxZjLNFuiJVCK/pubhtml?gid=1766079834&amp;single=true&amp;widget=true&amp;headers=false"></iframe>
+</div>
+  </section>
   <!-- ABOUT -->
   <section id="about">
     <div class="about-content">
