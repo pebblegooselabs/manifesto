@@ -741,225 +741,227 @@
   }
 }
 
-.recon-frame {
-  width: 100%;
-  max-width: 400px;
-  height: 250px;
-  position: relative;
-  border: 1px solid rgba(0, 242, 255, 0.2);
-  overflow: hidden;
-  margin: 20px 0;
-}
+  .recon-frame {
+    width: 100%;
+    max-width: 400px;
+    height: 250px;
+    position: relative;
+    border: 1px solid rgba(0, 242, 255, 0.2);
+    overflow: hidden;
+    margin: 20px 0;
+  }
 
-.recon-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.5) contrast(1.2) grayscale(0.8) sepia(1) hue-rotate(185deg) saturate(4);
-}
+  .recon-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.5) contrast(1.2) grayscale(0.8) sepia(1) hue-rotate(185deg) saturate(4);
+  }
 
-.asset-tag {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: var(--blue);
-  color: #000;
-  font-family: 'Courier New', monospace;
-  font-size: 10px;
-  font-weight: bold;
-  padding: 2px 6px;
-  z-index: 10;
-}
+  .asset-tag {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--blue);
+    color: #000;
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 6px;
+    z-index: 10;
+  }
 
-/* Moving scanline for this specific frame */
-.scan-bar {
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background: var(--blue);
-  box-shadow: 0 0 10px var(--blue);
-  opacity: 0.5;
-  top: 0;
-  animation: scanning 3s linear infinite;
-}
+  /* Moving scanline for this specific frame */
+  .scan-bar {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: var(--blue);
+    box-shadow: 0 0 10px var(--blue);
+    opacity: 0.5;
+    top: 0;
+    animation: scanning 3s linear infinite;
+  }
 
-@keyframes scanning {
-  0% { top: 0; }
-  100% { top: 100%; }
-}
+  @keyframes scanning {
+    0% { top: 0; }
+    100% { top: 100%; }
+  }
 
-.data-terminal-wrapper {
-  width: 100%;
-  margin: 2rem 0;
-  border: 1px solid var(--blue);
-  background: #000;
-  box-shadow: 0 0 20px rgba(0, 112, 112, 0.1);
-  border-radius: 4px;
-  overflow: hidden;
-}
+  .data-terminal-wrapper {
+    width: 100%;
+    margin: 2rem 0;
+    border: 1px solid var(--blue);
+    background: #000;
+    box-shadow: 0 0 20px rgba(0, 112, 112, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+  }
 
-.terminal-header {
-  background: var(--blue-dim);
-  padding: 8px 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--blue);
-}
+  .terminal-header {
+    background: var(--blue-dim);
+    padding: 8px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--blue);
+  }
 
-.terminal-title {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 1px;
-  color: var(--white);
-}
+  .terminal-title {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: var(--white);
+  }
 
-.data-terminal-wrapper iframe {
-  width: 100%;
-  height: 600px; /* Adjust height as needed */
-  border: none;
-  filter: invert(0.9) hue-rotate(180deg) brightness(0.9); /* This "Dark Modes" the Google Sheet */
-}
+  .data-terminal-wrapper iframe {
+    width: 100%;
+    height: 600px; /* Adjust height as needed */
+    border: none;
+    filter: invert(0.9) hue-rotate(180deg) brightness(0.9); /* This "Dark Modes" the Google Sheet */
+  }
 
-.cases-list {
-  margin-top: 3rem;
-  border-top: 1px solid var(--border);
-}
+  .cases-list {
+    margin-top: 3rem;
+    border-top: 1px solid var(--border);
+  }
 
-.case-item {
-  display: grid;
-  grid-template-columns: 100px 1fr 120px;
-  gap: 2rem;
-  padding: 2rem 0;
-  border-bottom: 1px solid var(--border);
-  transition: background 0.3s;
-}
-
-.case-item:hover {
-  background: rgba(0, 112, 112, 0.05);
-}
-
-.case-domain {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.7rem;
-  color: var(--blue);
-  border: 1px solid var(--blue);
-  height: fit-content;
-  padding: 2px 5px;
-  text-align: center;
-}
-
-.case-title {
-  font-size: 1rem;
-  color: var(--white);
-  margin-bottom: 0.5rem;
-}
-
-.case-desc {
-  font-size: 0.9rem;
-  color: var(--off-white);
-  margin-bottom: 0.5rem;
-}
-
-.case-details {
-  font-size: 0.8rem;
-  color: var(--blue);
-  opacity: 0.8;
-  font-family: 'IBM Plex Mono', monospace;
-}
-
-.case-outcome {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.7rem;
-  letter-spacing: 1px;
-  color: var(--blue);
-  text-align: right;
-  opacity: 1;
-}
-
-@media (max-width: 768px) {
   .case-item {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: 100px 1fr 120px;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.3s;
   }
+
+  .case-item:hover {
+    background: rgba(0, 112, 112, 0.05);
+  }
+
+  .case-domain {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--blue);
+    border: 1px solid var(--blue);
+    height: fit-content;
+    padding: 2px 5px;
+    text-align: center;
+  }
+
+  .case-title {
+    font-size: 1rem;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .case-desc {
+    font-size: 0.9rem;
+    color: var(--off-white);
+    margin-bottom: 0.5rem;
+  }
+
+  .case-details {
+    font-size: 0.8rem;
+    color: var(--blue);
+    opacity: 0.8;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
   .case-outcome {
-    text-align: left;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    color: var(--blue);
+    text-align: right;
+    opacity: 1;
   }
-}
 
-/* THE FULL ACCESSIBILITY OVERRIDE */
-body.high-contrast, 
-body.high-contrast #manifesto, 
-body.high-contrast section,
-body.high-contrast nav {
-  background: #ffffff !important;
-  background-image: none !important;
-  color: #000000 !important;
-}
+  @media (max-width: 768px) {
+    .case-item {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .case-outcome {
+      text-align: left;
+    }
+  }
 
-/* Fixes ALL headings (Diomedes wordmark, Pillars, Manifesto titles) */
-body.high-contrast :is(h1, h2, h3, .nav-wordmark, .section-title, .manifesto-item-label, .pillar-title, .case-title) {
-  color: #000000 !important;
-  text-shadow: none !important;
-}
+  /* THE FULL ACCESSIBILITY OVERRIDE */
+  body.high-contrast, 
+  body.high-contrast #manifesto, 
+  body.high-contrast section,
+  body.high-contrast nav {
+    background: #ffffff !important;
+    background-image: none !important;
+    color: #000000 !important;
+  }
 
-/* Fixes the "Scroll to continue" and Section Labels */
-body.high-contrast :is(.hero-scroll, .section-label, .hero-tag, .case-domain) {
-  color: #000000 !important;
-  opacity: 1 !important;
-}
+  /* Fixes ALL headings (Diomedes wordmark, Pillars, Manifesto titles) */
+  body.high-contrast :is(h1, h2, h3, .nav-wordmark, .section-title, .manifesto-item-label, .pillar-title, .case-title) {
+    color: #000000 !important;
+    text-shadow: none !important;
+  }
 
-/* Fixes the Manifesto and Pillar backgrounds */
-body.high-contrast :is(#manifesto, .pillar, .case-item) {
-  background: #ffffff !important;
-  border-color: #000000 !important;
-}
+  /* Fixes the "Scroll to continue" and Section Labels */
+  body.high-contrast :is(.hero-scroll, .section-label, .hero-tag, .case-domain) {
+    color: #000000 !important;
+    opacity: 1 !important;
+  }
 
-/* Fixes the nav blur and border */
-body.high-contrast nav {
-  background: #ffffff !important;
-  backdrop-filter: none !important;
-  border-bottom: 2px solid #000000 !important;
-}
+  /* Fixes the Manifesto and Pillar backgrounds */
+  body.high-contrast :is(#manifesto, .pillar, .case-item) {
+    background: #ffffff !important;
+    border-color: #000000 !important;
+  }
 
-/* Fixes the ghost grey text in Pillars and Case Files */
-body.high-contrast :is(.pillar-text, .case-desc, .case-details, .manifesto-item-text, p) {
-  color: #000000 !important;
-  opacity: 1 !important;
-}
+  /* Fixes the nav blur and border */
+  body.high-contrast nav {
+    background: #ffffff !important;
+    backdrop-filter: none !important;
+    border-bottom: 2px solid #000000 !important;
+  }
 
-/* Optional: If you want the blue links/details to be a darker, more readable blue */
-body.high-contrast .case-details, 
-body.high-contrast .case-details a {
-  color: #004b4b !important; /* A darker "Ink" teal for better contrast */
-}
+  /* Fixes the ghost grey text in Pillars and Case Files */
+  body.high-contrast :is(.pillar-text, .case-desc, .case-details, .manifesto-item-text, p) {
+    color: #000000 !important;
+    opacity: 1 !important;
+  }
 
-body.high-contrast :is(.manifesto-quote, blockquote, .manifesto-text, em, strong) {
-  color: #000000 !important;
-  opacity: 1 !important;
-  text-shadow: none !important;
-  background: transparent !important;
-}
+  /* Optional: If you want the blue links/details to be a darker, more readable blue */
+  body.high-contrast .case-details, 
+  body.high-contrast .case-details a {
+    color: #004b4b !important; /* A darker "Ink" teal for better contrast */
+  }
 
-/* Fixes the Diomedes / Aristos Archaion quote and all emphasis text */
-body.high-contrast :is(.manifesto-item-text, .manifesto-text, em, strong, i, blockquote) {
-  color: #000000 !important;
-  opacity: 1 !important;
-  text-shadow: none !important;
-}
+  body.high-contrast :is(.manifesto-quote, blockquote, .manifesto-text, em, strong) {
+    color: #000000 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+    background: transparent !important;
+  }
 
-/* Force ALL navigation links and brand text to black */
-body.high-contrast :is(.nav-link, .nav-wordmark, #accessibility-toggle) {
-  color: #000000 !important;
-}
+  /* Fixes the Diomedes / Aristos Archaion quote and all emphasis text */
+  body.high-contrast :is(.manifesto-item-text, .manifesto-text, em, strong, i, blockquote) {
+    color: #000000 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+  }
 
-/* The "Master Fix" for all body text that isn't a heading */
-body.high-contrast :is(p, li, span, .pillar-text, .case-desc, .hero-tag, .hero-scroll) {
-  color: #000000 !important;
-  opacity: 1 !important;
-}
+  /* Force ALL navigation links and brand text to black */
+  body.high-contrast :is(.nav-link, .nav-wordmark, #accessibility-toggle) {
+    color: #000000 !important;
+  }
 
-</style>
+  /* The "Master Fix" for all body text that isn't a heading */
+  body.high-contrast :is(p, li, span, .pillar-text, .case-desc, .hero-tag, .hero-scroll) {
+    color: #000000 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+    background: transparent !important;
+    }
+
+  </style>
 </head>
 <body>
 
