@@ -887,7 +887,20 @@
     }
   }
 
-  /* 1. Reset all backgrounds to pure white */
+  /* THE FULL ACCESSIBILITY OVERRIDE */
+  body.highcontrast * {
+    font-family: 'Arial', sans-serif !important;
+    font-size: 16px !important;
+    line-height: 1.5 !important;
+    color: #000 !important;
+    background: #fff !important;
+    border: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+  }
+
+  /* THE CLEAN ACCESSIBILITY OVERRIDE */
   body.high-contrast, 
   body.high-contrast #manifesto, 
   body.high-contrast section,
@@ -901,31 +914,30 @@
     backdrop-filter: none !important;
   }
 
-  /* 2. Force ALL text to deep black (links, italics, headings, paragraphs) */
-  body.high-contrast :is(
-    h1, h2, h3, p, li, span, i, em, strong, blockquote,
-    .nav-link, .nav-wordmark, #accessibility-toggle,
-    .pillar-title, .pillar-text, 
-    .manifesto-item-label, .manifesto-item-text, .manifesto-text,
-    .case-title, .case-desc, .case-domain, .case-details,
-    .hero-tag, .hero-scroll, .section-label, .section-title
-  ) {
+  /* TARGETING THE STUBBORN GHOSTS: The Nav and the Italics */
+  body.high-contrast .nav-link,
+  body.high-contrast .nav-wordmark,
+  body.high-contrast #accessibility-toggle,
+  body.high-contrast i,
+  body.high-contrast em,
+  body.high-contrast .manifesto-item-text i {
     color: #000000 !important;
     opacity: 1 !important;
     text-shadow: none !important;
-    -webkit-text-stroke: 0px !important;
+    font-style: italic !important; /* Ensures the Greek stays italic but black */
   }
 
-  /* 3. Fix borders so elements are visible on white */
-  body.high-contrast :is(nav, .pillar, .case-item, .manifesto-block) {
-    border: 1px solid #000000 !important;
+  /* MASTER TEXT OVERRIDE: Paragraphs, Lists, and Spans */
+  body.high-contrast :is(h1, h2, h3, p, li, span, .pillar-text, .case-desc, .manifesto-text) {
+    color: #000000 !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
   }
 
-  /* 4. Special dark teal for links (for better contrast) */
-  body.high-contrast .case-details a,
-  body.high-contrast .case-details {
+  /* Optional: Darken the teal links so they don't vanish */
+  body.high-contrast .case-details,
+  body.high-contrast .case-details a {
     color: #004b4b !important;
-    text-decoration: underline !important;
   }
 
   </style>
