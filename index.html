@@ -906,51 +906,49 @@
     font-family: Arial, Helvetica, sans-serif !important;
   }
 
-  /* 1. THE NAV LINKS FIX: Targets the <a> tags inside the list specifically */
+  /* 1. NAV & ACCESSIBILITY BUTTON */
   body.high-contrast .nav-links a,
   body.high-contrast .nav-wordmark,
   body.high-contrast #accessibility-toggle {
     color: #000000 !important;
     opacity: 1 !important;
-    font-family: Arial, Helvetica, sans-serif !important;
   }
 
-  /* 2. THE MANIFESTO FIX: Targets the opening paragraph and the items */
-  body.high-contrast .manifesto-opening,
-  body.high-contrast .manifesto-item-text,
-  body.high-contrast .manifesto-text,
-  body.high-contrast .pillar-text,
-  body.high-contrast .case-desc,
-  body.high-contrast p {
+  /* 2. ALL BODY TEXT */
+  body.high-contrast :is(.manifesto-opening, .manifesto-item-text, .manifesto-text, .pillar-text, .case-desc, p, li) {
     color: #000000 !important;
     opacity: 1 !important;
     -webkit-text-fill-color: #000000 !important;
-    font-family: Arial, Helvetica, sans-serif !important;
   }
 
-  /* 3. THE GREEK FIX: Aristos Archaion stays italic but turns BLACK */
+  /* 3. ITALICS (GREEK QUOTE) */
   body.high-contrast i, 
   body.high-contrast em {
     color: #000000 !important;
     font-style: italic !important;
     opacity: 1 !important;
-    font-family: Arial, Helvetica, sans-serif !important;
   }
 
-  /* 4. RESTORE TECHY STRUCTURE: Sharp black borders so it's not "floating" */
+  /* 4. TECHY BORDERS */
   body.high-contrast :is(.pillar, .case-item, .manifesto-block) {
     border: 1px solid #000000 !important;
     margin-bottom: 1.5rem !important;
     padding: 1.5rem !important;
   }
 
-  /* 5. HEADINGS & LABELS */
-  body.high-contrast :is(h1, h2, h3, .nav-wordmark, .manifesto-item-label, .section-label, .hero-tag) {
+  /* 5. HEADINGS & PILLAR TITLES (THE FIX) */
+  body.high-contrast :is(h1, h2, h3, .pillar-title, .nav-wordmark, .manifesto-item-label, .section-label, .hero-tag) {
     color: #000000 !important;
     font-weight: 700 !important;
     text-transform: uppercase;
     opacity: 1 !important;
-    font-family: Arial, Helvetica, sans-serif !important;
+  }
+
+  /* 6. LINKS & THE DEATH ROW ROSTER FIX */
+  body.high-contrast a:is([href*="database"], .case-details a, [id*="link"]) {
+    color: #004b4b !important; /* Dark teal for high contrast visibility */
+    text-decoration: underline !important;
+    font-weight: bold !important;
   }
 
   </style>
