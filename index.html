@@ -282,9 +282,9 @@
     }
 
     .manifesto-opening {
-      font-size: clamp(1rem, 1.8vw, 1.25rem);
+      font-size: clamp(1rem, 1.5vw, 1rem);
       color: var(--off-white);
-      max-width: 780px;
+      max-width: 960px;
       margin-bottom: 4rem;
       line-height: 1.9;
       border-left: 2px solid var(--blue);
@@ -937,7 +937,7 @@
   }
 
   /* 5. HEADINGS & PILLAR TITLES (THE FIX) */
-  body.high-contrast :is(h1, h2, h3, .pillar-title, .nav-wordmark, .manifesto-item-label, .section-label, .hero-tag) {
+  body.high-contrast :is(h1, h2, h3, .pillar-title, .nav-wordmark, .manifesto-item-label, .section-label, .hero-tag, .hero-scroll) {
     color: #000000 !important;
     font-weight: 700 !important;
     text-transform: uppercase;
@@ -959,9 +959,9 @@
 }
 
 .toggle-label {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 10px;
-  color: var(--blue);
+  font-family: 'Arial', sans-serif;
+  font-size: 12px;
+  color: var(--white);
 }
 
 /* The switch container */
@@ -1033,7 +1033,7 @@ body.high-contrast .toggle-label {
       <span class="nav-wordmark">DIOMEDES</span>
     </a>
     <div class="toggle-container">
-      <span class="toggle-label">[[ACCESSIBILITY]]</span>
+      <span class="toggle-label">[<b>ACCESSIBILITY</b>]</span>
       <label class="switch">
         <input type="checkbox" id="accessibility-toggle">
         <span class="slider"></span>
@@ -1077,7 +1077,7 @@ body.high-contrast .toggle-label {
       <div class="section-label reveal">Manifesto</div>
 
       <div class="manifesto-opening reveal">
-        Diomedes was the true <i>aristos archaion</i>, the best of the Greeks, who refused to look away.
+        We believe that Diomedes was the true <i>aristos archaion</i>, the best of the Greeks. While Achilles was defined by his rage and Agamemnon by his ambition and Odysseus by his cunning, Diomedes was defined by his balance: the martial prowess of a warrior and the discipline of a thinker. In that spirit, we are committed to the pursuit of knowledge with both rigor and humility. We understand that the world is complex and that uncovering hidden realities requires not only technical skill but also ethical clarity. Our manifesto is a declaration of our principles and a shared commitment to the work we do. 
       </div>
 
       <div class="manifesto-block reveal">
@@ -1085,22 +1085,22 @@ body.high-contrast .toggle-label {
 
         <div class="manifesto-item">
           <div class="manifesto-item-label">Jargon as a Shield</div>
-          <div class="manifesto-item-text">If a process cannot be easily accessed and understood by the community it affects, it is designed to exploit them.</div>
+          <div class="manifesto-item-text">To obfuscate information is to prevent understanding. If a process cannot be easily accessed and understood by the community it affects, it is designed to exploit them.</div>
         </div>
 
         <div class="manifesto-item">
           <div class="manifesto-item-label">Bystanding</div>
-          <div class="manifesto-item-text">To stand by while evidence disappears is an invitation for trails to go cold.</div>
+          <div class="manifesto-item-text">To stand by while evidence disappears is an invitation for trails to go cold. Silence in the face of documented harm is an act of complicity.</div>
         </div>
 
         <div class="manifesto-item">
           <div class="manifesto-item-label">Institutional Blindness</div>
-          <div class="manifesto-item-text">To ignore data because it contradicts power is a betrayal of the public trust.</div>
+          <div class="manifesto-item-text">To ignore data because it contradicts institutional interests is a betrayal of the public trust. If the data exists, it must be acknowledged.</div>
         </div>
 
         <div class="manifesto-item">
           <div class="manifesto-item-label">False Neutrality</div>
-          <div class="manifesto-item-text">We reject the idea that there are two sides to a contaminated well. Factual reality only requires a witness.</div>
+          <div class="manifesto-item-text">To claim there are two sides to a contaminated well is to deny the existence of the contamination. Factual reality only requires a witness.</div>
         </div>
       </div>
 
@@ -1108,27 +1108,27 @@ body.high-contrast .toggle-label {
         <div class="manifesto-block-title">We adhere to the following deeds</div>
 
         <div class="manifesto-item">
-          <div class="manifesto-item-label">Shouting for the Whispers</div>
-          <div class="manifesto-item-text">We believe in being the voice for those who can only whisper, and the shield for those who cannot defend themselves.</div>
+          <div class="manifesto-item-label">Witnessing the Record</div>
+          <div class="manifesto-item-text">We document what can be verified. Where evidence exists but attention does not, we ensure it is seen.</div>
         </div>
 
         <div class="manifesto-item">
-          <div class="manifesto-item-label">The Open-Source Vow</div>
-          <div class="manifesto-item-text">We release our tools and our findings to everyone. We do not hoard knowledge; we share it.</div>
+          <div class="manifesto-item-label">Vowing to Share</div>
+          <div class="manifesto-item-text">We release our tools and our findings to everyone. Knowledge is most valuable when it is accessible.</div>
         </div>
 
         <div class="manifesto-item">
-          <div class="manifesto-item-label">The Power of Request</div>
-          <div class="manifesto-item-text">We do not wait for permission to know the truth. We demand it, legally and relentlessly.</div>
+          <div class="manifesto-item-label">Requesting the Truth</div>
+          <div class="manifesto-item-text">We demand the truth, legally and persistently. The record is the foundation of all claims.</div>
         </div>
 
         <div class="manifesto-item">
-          <div class="manifesto-item-label">Radical Transparency</div>
+          <div class="manifesto-item-label">Standing for Transparency</div>
           <div class="manifesto-item-text">We hide nothing about our methods. If our research is sound, it can survive any scrutiny.</div>
         </div>
 
         <div class="manifesto-item">
-          <div class="manifesto-item-label">The Long Game</div>
+          <div class="manifesto-item-label">Playing the Long Game</div>
           <div class="manifesto-item-text">We do not chase headlines. We build cases. The truth does not expire.</div>
         </div>
       </div>
@@ -1233,7 +1233,7 @@ body.high-contrast .toggle-label {
       </a>
     </div>
   </div>
-  <div class="case-outcome" style="opacity: 1; color: var(--gold);">CORE ASSET</div>
+  <div class="case-outcome" style="opacity: 1; color: var(--blue-dim);">CORE ASSET</div>
 </div>
   </section>
   <!-- ABOUT -->
