@@ -78,6 +78,7 @@
       align-items: center;
       gap: 0.8rem;
       text-decoration: none;
+      cursor: pointer;
     }
 
     .nav-logo-img {
@@ -109,10 +110,27 @@
       letter-spacing: 0.1em;
       text-transform: uppercase;
       transition: color 0.2s;
+      cursor: pointer;
     }
 
-    .nav-links a:hover {
+    .nav-links a:hover,
+    .nav-links a.active {
       color: var(--blue);
+    }
+
+    .nav-links a.active {
+      border-bottom: 1px solid var(--blue);
+      padding-bottom: 2px;
+    }
+
+    /* PAGE SYSTEM */
+    .page {
+      display: none;
+      min-height: 100vh;
+    }
+
+    .page.active {
+      display: block;
     }
 
     /* HERO */
@@ -218,23 +236,6 @@
       color: var(--white);
     }
 
-    .hero-scroll {
-      position: absolute;
-      bottom: 2rem;
-      left: 3rem;
-      font-size: 0.65rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--off-white);
-      opacity: 0.5;
-      animation: fadeUp 0.8s ease forwards 1.2s, bobUpDown 2s ease-in-out infinite 2s;
-    }
-
-    @keyframes bobUpDown {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(6px); }
-    }
-
     /* SECTION BASE */
     section {
       padding: 6rem 3rem;
@@ -266,13 +267,18 @@
       line-height: 1.2;
     }
 
-    /* MANIFESTO */
-    #manifesto {
+    /* MANIFESTO PAGE */
+    #page-manifesto {
+      padding-top: 80px;
+    }
+
+    #page-manifesto .manifesto-wrapper {
       max-width: 100%;
-      padding: 6rem 0;
+      padding: 5rem 0;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
       background: linear-gradient(180deg, rgba(16,22,19,0.96), rgba(9,13,11,0.98));
+      min-height: calc(100vh - 80px);
     }
 
     .manifesto-inner {
@@ -364,8 +370,11 @@
     }
 
     /* PILLARS */
-    #pillars {
+    .pillars-section {
       border-bottom: 1px solid var(--border);
+      padding: 6rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
     .pillars-grid {
@@ -410,8 +419,11 @@
     }
 
     /* WORK */
-    #work {
+    .work-section {
       border-bottom: 1px solid var(--border);
+      padding: 6rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
     .cases-list {
@@ -473,21 +485,21 @@
     }
 
     /* ABOUT */
-    #about {
+    .about-section {
       border-bottom: 1px solid var(--border);
-      padding: 8rem 3rem; /* Extra padding for breathing room */
+      padding: 8rem 3rem;
     }
-    
+
     .about-content {
       display: flex;
-      align-items: center;    /* Vertically centers the image and text */
+      align-items: center;
       gap: 5rem;
-      max-width: 1400px;        /* Stops the "skinny" look */
+      max-width: 1400px;
       margin: 0 auto;
     }
 
     .recon-frame {
-      flex: 0 0 500px;        /* Keeps the image size steady */
+      flex: 0 0 500px;
       height: 400px;
       position: relative;
       border: 1px solid rgba(0, 242, 255, 0.2);
@@ -505,51 +517,42 @@
       font-size: 1.15rem !important;
       line-height: 1.8;
       margin-bottom: 2rem;
-      width: 100%;            /* Ensures lines stretch across the right side */
+      width: 100%;
     }
-      .about-text p:last-child {
-        margin-bottom: 0;
+
+    .about-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 900px) {
+      .about-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 3rem;
       }
+      .recon-frame {
+        width: 100%;
+        max-width: 500px;
+        flex: none;
+      }
+    }
 
-/* MOBILE FIX: Stacks them vertically on phones */
-@media (max-width: 900px) {
-  .about-content {
-    flex-direction: column;
-    align-items: center;
-    gap: 3rem;
-  }
-  .recon-frame {
-    width: 100%;
-    max-width: 500px;
-    flex: none;
-  }
-}
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    margin-top: 3rem;
-  }
-
-  .about-text p {
-    color: var(--off-white);
-    font-size: 0.9rem;
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
-  }
-
-  .about-text p:last-child {
-    margin-bottom: 0;
-  }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-top: 3rem;
+    }
 
     /* CONTACT */
-    #contact {
+    .contact-section {
       text-align: center;
       padding: 8rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
-    #contact .section-label {
+    .contact-section .section-label {
       justify-content: center;
       display: flex;
     }
@@ -645,390 +648,329 @@
     }
 
     .map-lens-container {
-  position: absolute;
-  right: -8%;      /* Pushed it slightly more off-screen to save your title */
-  top: 45%;        /* Adjusted to center it better with the larger size */
-  transform: translateY(-50%);
-  width: 600px;    /* Increased from 500px */
-  height: 600px;   /* Increased from 500px */
-  z-index: 5;
-}
-
-.map-lens {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid var(--blue);
-  background: #050505; /* Dark base for the "glitch" feel */
-  box-shadow: 0 0 40px rgba(0, 242, 255, 0.2);
-}
-
-.satellite-img {
-  position: absolute; /* This is the secret sauce */
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Keeps the map from looking stretched */
-  filter: grayscale(0.3) contrast(1.3) brightness(0.6) hue-rotate(180deg);
-  opacity: 0.9;
-  display: block; /* Ensures it's not being treated as inline text */
-}
-
-.scanning-grid {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: 
-    radial-gradient(circle, transparent 40%, rgba(0, 0, 0, 0.4) 100%),
-    linear-gradient(rgba(0, 242, 255, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 242, 255, 0.1) 1px, transparent 1px);
-  background-size: 100% 100%, 40px 40px, 40px 40px;
-  z-index: 5; /* Keeps the grid on TOP of the image */
-  pointer-events: none;
-}
-
-.coordinates {
-  position: absolute;
-  bottom: 20%;      /* Moved up from 15% to clear the curve */
-  left: 50%;
-  transform: translateX(-50%);
-  font-family: 'Courier New', monospace;
-  font-size: 13px;  /* Slightly bigger for readability */
-  color: var(--blue);
-  background: rgba(0, 20, 30, 0.8);
-  padding: 6px 12px;
-  border: 1px solid var(--blue);
-  text-shadow: 0 0 5px var(--blue);
-  z-index: 10;
-  white-space: nowrap;
-  letter-spacing: 1px;
-}
-
-@keyframes mapDrift {
-  0% { transform: scale(1.1) rotate(0deg); }
-  50% { transform: scale(1.2) rotate(2deg); }
-  100% { transform: scale(1.1) rotate(0deg); }
-}
-/* Mobile Optimization for the Satellite Lens */
-@media (max-width: 768px) {
-  .map-lens-container {
-    position: relative; /* Switches from floating to sitting in the layout */
-    width: 300px;       /* Much smaller for phone screens */
-    height: 300px;
-    margin: 20px auto;  /* Centers it horizontally */
-    right: auto;        /* Resets the desktop positioning */
-    top: auto;
-    transform: none;    /* Resets the desktop centering */
-    order: -1;          /* Pushes it ABOVE the text if using flex, or just keeps it tidy */
-  }
-
-  .hero {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding-top: 100px; /* Gives space for the nav */
-  }
-
-  .coordinates {
-    font-size: 10px;    /* Smaller text for smaller lens */
-    bottom: 15%;
-  }
-}
-
-  .recon-frame {
-    width: 100%;
-    max-width: 400px;
-    height: 250px;
-    position: relative;
-    border: 1px solid rgba(0, 242, 255, 0.2);
-    overflow: hidden;
-    margin: 20px 0;
-  }
-
-  .recon-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: brightness(0.5) contrast(1.2) grayscale(0.8) sepia(1) hue-rotate(185deg) saturate(4);
-  }
-
-  .asset-tag {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: var(--blue);
-    color: #000;
-    font-family: 'Courier New', monospace;
-    font-size: 10px;
-    font-weight: bold;
-    padding: 2px 6px;
-    z-index: 10;
-  }
-
-  /* Moving scanline for this specific frame */
-  .scan-bar {
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    background: var(--blue);
-    box-shadow: 0 0 10px var(--blue);
-    opacity: 0.5;
-    top: 0;
-    animation: scanning 3s linear infinite;
-  }
-
-  @keyframes scanning {
-    0% { top: 0; }
-    100% { top: 100%; }
-  }
-
-  .data-terminal-wrapper {
-    width: 100%;
-    margin: 2rem 0;
-    border: 1px solid var(--blue);
-    background: #000;
-    box-shadow: 0 0 20px rgba(0, 112, 112, 0.1);
-    border-radius: 4px;
-    overflow: hidden;
-  }
-
-  .terminal-header {
-    background: var(--blue-dim);
-    padding: 8px 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid var(--blue);
-  }
-
-  .terminal-title {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 1px;
-    color: var(--white);
-  }
-
-  .data-terminal-wrapper iframe {
-    width: 100%;
-    height: 600px; /* Adjust height as needed */
-    border: none;
-    filter: invert(0.9) hue-rotate(180deg) brightness(0.9); /* This "Dark Modes" the Google Sheet */
-  }
-
-  .cases-list {
-    margin-top: 3rem;
-    border-top: 1px solid var(--border);
-  }
-
-  .case-item {
-    display: grid;
-    grid-template-columns: 100px 1fr 120px;
-    gap: 2rem;
-    padding: 2rem 0;
-    border-bottom: 1px solid var(--border);
-    transition: background 0.3s;
-  }
-
-  .case-item:hover {
-    background: rgba(0, 112, 112, 0.05);
-  }
-
-  .case-domain {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--blue);
-    border: 1px solid var(--blue);
-    height: fit-content;
-    padding: 2px 5px;
-    text-align: center;
-  }
-
-  .case-title {
-    font-size: 1rem;
-    color: var(--white);
-    margin-bottom: 0.5rem;
-  }
-
-  .case-desc {
-    font-size: 0.9rem;
-    color: var(--off-white);
-    margin-bottom: 0.5rem;
-  }
-
-  .case-details {
-    font-size: 0.8rem;
-    color: var(--blue);
-    opacity: 0.8;
-    font-family: 'IBM Plex Mono', monospace;
-  }
-
-  .case-outcome {
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 0.7rem;
-    letter-spacing: 1px;
-    color: var(--blue);
-    text-align: right;
-    opacity: 1;
-  }
-
-  @media (max-width: 768px) {
-    .case-item {
-      grid-template-columns: 1fr;
-      gap: 1rem;
+      position: absolute;
+      right: -8%;
+      top: 45%;
+      transform: translateY(-50%);
+      width: 600px;
+      height: 600px;
+      z-index: 5;
     }
-    .case-outcome {
-      text-align: left;
+
+    .map-lens {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid var(--blue);
+      background: #050505;
+      box-shadow: 0 0 40px rgba(0, 242, 255, 0.2);
     }
-  }
 
-/* THE NUCLEAR ACCESSIBILITY OVERRIDE */
-  body.high-contrast, 
-  body.high-contrast #manifesto, 
-  body.high-contrast section,
-  body.high-contrast nav,
-  body.high-contrast .manifesto-block,
-  body.high-contrast .pillar,
-  body.high-contrast .case-item {
-    background: #ffffff !important;
-    background-image: none !important;
-    color: #000000 !important;
-    backdrop-filter: none !important;
-  }
+    .satellite-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(0.3) contrast(1.3) brightness(0.6) hue-rotate(180deg);
+      opacity: 0.9;
+      display: block;
+    }
 
-  /* THE UNIVERSAL FONT KILLER */
-  body.high-contrast * {
-    font-family: Arial, Helvetica, sans-serif !important;
-  }
+    .scanning-grid {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(circle, transparent 40%, rgba(0, 0, 0, 0.4) 100%),
+        linear-gradient(rgba(0, 242, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 242, 255, 0.1) 1px, transparent 1px);
+      background-size: 100% 100%, 40px 40px, 40px 40px;
+      z-index: 5;
+      pointer-events: none;
+    }
 
-  /* 1. NAV & ACCESSIBILITY BUTTON */
-  body.high-contrast .nav-links a,
-  body.high-contrast .nav-wordmark,
-  body.high-contrast #accessibility-toggle {
-    color: #000000 !important;
-    opacity: 1 !important;
-  }
+    .coordinates {
+      position: absolute;
+      bottom: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Courier New', monospace;
+      font-size: 13px;
+      color: var(--blue);
+      background: rgba(0, 20, 30, 0.8);
+      padding: 6px 12px;
+      border: 1px solid var(--blue);
+      text-shadow: 0 0 5px var(--blue);
+      z-index: 10;
+      white-space: nowrap;
+      letter-spacing: 1px;
+    }
 
-  /* 2. ALL BODY TEXT */
-  body.high-contrast :is(.manifesto-opening, .manifesto-item-text, .manifesto-text, .pillar-text, .case-desc, p, li) {
-    color: #000000 !important;
-    opacity: 1 !important;
-    -webkit-text-fill-color: #000000 !important;
-  }
+    @keyframes mapDrift {
+      0% { transform: scale(1.1) rotate(0deg); }
+      50% { transform: scale(1.2) rotate(2deg); }
+      100% { transform: scale(1.1) rotate(0deg); }
+    }
 
-  /* 3. ITALICS (GREEK QUOTE) */
-  body.high-contrast i, 
-  body.high-contrast em {
-    color: #000000 !important;
-    font-style: italic !important;
-    opacity: 1 !important;
-  }
+    @media (max-width: 768px) {
+      .map-lens-container {
+        position: relative;
+        width: 300px;
+        height: 300px;
+        margin: 20px auto;
+        right: auto;
+        top: auto;
+        transform: none;
+        order: -1;
+      }
 
-  /* 4. TECHY BORDERS */
-  body.high-contrast :is(.pillar, .case-item, .manifesto-block) {
-    border: 1px solid #000000 !important;
-    margin-bottom: 1.5rem !important;
-    padding: 1.5rem !important;
-  }
+      .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding-top: 100px;
+      }
 
-  /* 5. HEADINGS & PILLAR TITLES (THE FIX) */
-  body.high-contrast :is(h1, h2, h3, .pillar-title, .nav-wordmark, .manifesto-item-label, .section-label, .hero-tag, .hero-scroll) {
-    color: #000000 !important;
-    font-weight: 700 !important;
-    text-transform: uppercase;
-    opacity: 1 !important;
-  }
+      .coordinates {
+        font-size: 10px;
+        bottom: 15%;
+      }
+    }
 
-  /* 6. LINKS & THE DEATH ROW ROSTER FIX */
-  body.high-contrast a:is([href*="database"], .case-details a, [id*="link"]) {
-    color: #004b4b !important; /* Dark teal for high contrast visibility */
-    text-decoration: underline !important;
-    font-weight: bold !important;
-  }
+    .recon-frame {
+      width: 100%;
+      max-width: 400px;
+      height: 250px;
+      position: relative;
+      border: 1px solid rgba(0, 242, 255, 0.2);
+      overflow: hidden;
+      margin: 20px 0;
+    }
 
-  .toggle-container {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-left: 20px;
-}
+    .recon-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.5) contrast(1.2) grayscale(0.8) sepia(1) hue-rotate(185deg) saturate(4);
+    }
 
-.toggle-label {
-  font-family: 'Arial', sans-serif;
-  font-size: 12px;
-  color: var(--white);
-}
+    .asset-tag {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--blue);
+      color: #000;
+      font-family: 'Courier New', monospace;
+      font-size: 10px;
+      font-weight: bold;
+      padding: 2px 6px;
+      z-index: 10;
+    }
 
-/* The switch container */
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 30px;
-  height: 16px;
-}
+    .scan-bar {
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: var(--blue);
+      box-shadow: 0 0 10px var(--blue);
+      opacity: 0.5;
+      top: 0;
+      animation: scanning 3s linear infinite;
+    }
 
-/* Hide default checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
+    @keyframes scanning {
+      0% { top: 0; }
+      100% { top: 100%; }
+    }
 
-/* The track */
-.slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-color: transparent;
-  border: 1px solid var(--blue);
-  transition: .2s;
-}
+    .data-terminal-wrapper {
+      width: 100%;
+      margin: 2rem 0;
+      border: 1px solid var(--blue);
+      background: #000;
+      box-shadow: 0 0 20px rgba(0, 112, 112, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+    }
 
-/* The square knob */
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 8px;
-  width: 8px;
-  left: 3px;
-  bottom: 3px;
-  background-color: var(--blue);
-  transition: .2s;
-}
+    .terminal-header {
+      background: var(--blue-dim);
+      padding: 8px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--blue);
+    }
 
-/* On state */
-input:checked + .slider {
-  background-color: rgba(0, 243, 255, 0.1); /* Subtle blue glow */
-}
+    .terminal-title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: var(--white);
+    }
 
-input:checked + .slider:before {
-  transform: translateX(14px);
-  background-color: var(--white);
-}
+    .data-terminal-wrapper iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      filter: invert(0.9) hue-rotate(180deg) brightness(0.9);
+    }
 
-/* High Contrast Override for the Toggle itself */
-body.high-contrast .slider {
-  border-color: #000 !important;
-}
-body.high-contrast .slider:before {
-  background-color: #000 !important;
-}
-body.high-contrast .toggle-label {
-  color: #000 !important;
-}
+    /* THE NUCLEAR ACCESSIBILITY OVERRIDE */
+    body.high-contrast, 
+    body.high-contrast .manifesto-wrapper, 
+    body.high-contrast section,
+    body.high-contrast nav,
+    body.high-contrast .manifesto-block,
+    body.high-contrast .pillar,
+    body.high-contrast .case-item,
+    body.high-contrast .page,
+    body.high-contrast .about-section,
+    body.high-contrast .work-section,
+    body.high-contrast .pillars-section,
+    body.high-contrast .contact-section {
+      background: #ffffff !important;
+      background-image: none !important;
+      color: #000000 !important;
+      backdrop-filter: none !important;
+    }
 
+    body.high-contrast * {
+      font-family: Arial, Helvetica, sans-serif !important;
+    }
+
+    body.high-contrast .nav-links a,
+    body.high-contrast .nav-wordmark,
+    body.high-contrast #accessibility-toggle {
+      color: #000000 !important;
+      opacity: 1 !important;
+    }
+
+    body.high-contrast :is(.manifesto-opening, .manifesto-item-text, .manifesto-text, .pillar-text, .case-desc, p, li) {
+      color: #000000 !important;
+      opacity: 1 !important;
+      -webkit-text-fill-color: #000000 !important;
+    }
+
+    body.high-contrast i, 
+    body.high-contrast em {
+      color: #000000 !important;
+      font-style: italic !important;
+      opacity: 1 !important;
+    }
+
+    body.high-contrast :is(.pillar, .case-item, .manifesto-block) {
+      border: 1px solid #000000 !important;
+      margin-bottom: 1.5rem !important;
+      padding: 1.5rem !important;
+    }
+
+    body.high-contrast :is(h1, h2, h3, .pillar-title, .nav-wordmark, .manifesto-item-label, .section-label, .hero-tag,) {
+      color: #000000 !important;
+      font-weight: 700 !important;
+      text-transform: uppercase;
+      opacity: 1 !important;
+    }
+
+    body.high-contrast a:is([href*="database"], .case-details a, [id*="link"]) {
+      color: #004b4b !important;
+      text-decoration: underline !important;
+      font-weight: bold !important;
+    }
+
+    .toggle-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-left: 20px;
+    }
+
+    .toggle-label {
+      font-family: 'Arial', sans-serif;
+      font-size: 12px;
+      color: var(--white);
+    }
+
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 30px;
+      height: 16px;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: transparent;
+      border: 1px solid var(--blue);
+      transition: .2s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 8px;
+      width: 8px;
+      left: 3px;
+      bottom: 3px;
+      background-color: var(--blue);
+      transition: .2s;
+    }
+
+    input:checked + .slider {
+      background-color: rgba(0, 243, 255, 0.1);
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(14px);
+      background-color: var(--white);
+    }
+
+    body.high-contrast .slider {
+      border-color: #000 !important;
+    }
+    body.high-contrast .slider:before {
+      background-color: #000 !important;
+    }
+    body.high-contrast .toggle-label {
+      color: #000 !important;
+    }
+
+    /* Page transition */
+    .page.active {
+      animation: pageIn 0.35s ease forwards;
+    }
+
+    @keyframes pageIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Inner page top padding */
+    .inner-page {
+      padding-top: 80px;
+    }
   </style>
 </head>
 <body>
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo">
+    <a class="nav-logo" onclick="showPage('home')" role="button" tabindex="0">
       <img class="nav-logo-img" src="logo.png" alt="DIOMEDES RESEARCH logo">
       <span class="nav-wordmark">DIOMEDES</span>
     </a>
@@ -1040,261 +982,330 @@ body.high-contrast .toggle-label {
       </label>
     </div>
     <ul class="nav-links">
-      <li><a href="#manifesto">Manifesto</a></li>
-      <li><a href="#pillars">What We Do</a></li>
-      <li><a href="#work">Work</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a onclick="showPage('home')" data-page="home">Home</a></li>
+      <li><a onclick="showPage('manifesto')" data-page="manifesto">Manifesto</a></li>
+      <li><a onclick="showPage('work')" data-page="work">What We Do</a></li>
+      <li><a onclick="showPage('cases')" data-page="cases">Work</a></li>
+      <li><a onclick="showPage('about')" data-page="about">About</a></li>
+      <li><a onclick="showPage('contact')" data-page="contact">Contact</a></li>
     </ul>
   </nav>
 
-  <!-- HERO -->
-  <div class="hero">
-    <div class="map-lens-container">
-  <div class="map-lens">
-    <div class="scanning-grid"></div>
-    <img src="map.jpg.jpg" class="satellite-img" alt="Satellite Recon">    
-  </div>
-  <div class="lens-glitch"></div>
-</div>
-    <h1 class="hero-title">
-      DIOMEDES<span style="color:var(--blue)">.</span><br>RESEARCH<span class="cursor"></span>
-    </h1>
-    <p class="hero-subtitle">
-      We use open-source intelligence and geospatial analysis to identify and document patterns in institutional activity and compliance. We deliver verified, structured data for regulatory, legal, and public-interest use.
-    </p>
-    <div class="hero-cta">
-      <a href="#manifesto" class="btn btn-primary">Read the Manifesto</a>
-      <a href="#work" class="btn btn-ghost">See the Work</a>
-    </div>
-    <span class="hero-scroll">Scroll to continue ↓</span>
-  </div>
-
-  <!-- MANIFESTO -->
-  <div id="manifesto">
-    <div class="manifesto-inner">
-
-      <div class="section-label reveal">Manifesto</div>
-
-      <div class="manifesto-opening reveal">
-        We believe that Diomedes was the true <i>aristos archaion</i>, the best of the Greeks. While Achilles was defined by his rage and Agamemnon by his ambition and Odysseus by his cunning, Diomedes was defined by his balance: the martial prowess of a warrior and the discipline of a thinker. In that spirit, we are committed to the pursuit of knowledge with both rigor and humility. We understand that the world is complex and that uncovering hidden realities requires not only technical skill but also ethical clarity. Our manifesto is a declaration of our principles and a shared commitment to the work we do. 
+  <!-- ==================== PAGE: HOME ==================== -->
+  <div id="page-home" class="page active">
+    <div class="hero">
+      <div class="map-lens-container">
+        <div class="map-lens">
+          <div class="scanning-grid"></div>
+          <img src="map.jpg.jpg" class="satellite-img" alt="Satellite Recon">    
+        </div>
+        <div class="lens-glitch"></div>
       </div>
-
-      <div class="manifesto-block reveal">
-        <div class="manifesto-block-title">We reject the following</div>
-
-        <div class="manifesto-item">
-          <div class="manifesto-item-label">Jargon as a Shield</div>
-          <div class="manifesto-item-text">To obfuscate information is to prevent understanding. If a process cannot be easily accessed and understood by the community it affects, it is designed to exploit them.</div>
-        </div>
-
-        <div class="manifesto-item">
-          <div class="manifesto-item-label">Bystanding</div>
-          <div class="manifesto-item-text">To stand by while evidence disappears is an invitation for trails to go cold. Silence in the face of documented harm is an act of complicity.</div>
-        </div>
-
-        <div class="manifesto-item">
-          <div class="manifesto-item-label">Institutional Blindness</div>
-          <div class="manifesto-item-text">To ignore data because it contradicts institutional interests is a betrayal of the public trust. If the data exists, it must be acknowledged.</div>
-        </div>
-
-        <div class="manifesto-item">
-          <div class="manifesto-item-label">False Neutrality</div>
-          <div class="manifesto-item-text">To claim there are two sides to a contaminated well is to deny the existence of the contamination. Factual reality only requires a witness.</div>
-        </div>
-      </div>
-
-      <div class="manifesto-block reveal">
-        <div class="manifesto-block-title">We adhere to the following deeds</div>
-
-        <div class="manifesto-item">
-          <div class="manifesto-item-label">Witnessing the Record</div>
-          <div class="manifesto-item-text">We document what can be verified. Where evidence exists but attention does not, we ensure it is seen.</div>
-        </div>
-
-        <div class="manifesto-item">
-          <div class="manifesto-item-label">Vowing to Share</div>
-          <div class="manifesto-item-text">We release our tools and our findings to everyone. Knowledge is most valuable when it is accessible.</div>
-        </div>
-
-        <div class="manifesto-item">
-          <div class="manifesto-item-label">Requesting the Truth</div>
-          <div class="manifesto-item-text">We demand the truth, legally and persistently. The record is the foundation of all claims.</div>
-        </div>
-
-        <div class="manifesto-item">
-          <div class="manifesto-item-label">Standing for Transparency</div>
-          <div class="manifesto-item-text">We hide nothing about our methods. If our research is sound, it can survive any scrutiny.</div>
-        </div>
-
-        <div class="manifesto-item">
-          <div class="manifesto-item-label">Playing the Long Game</div>
-          <div class="manifesto-item-text">We do not chase headlines. We build cases. The truth does not expire.</div>
-        </div>
+      <h1 class="hero-title">
+        DIOMEDES<span style="color:var(--blue)">.</span><br>RESEARCH<span class="cursor"></span>
+      </h1>
+      <p class="hero-subtitle">
+          Diomedes Research develops open, reusable investigative frameworks and datasets that enable the verification of funded infrastructure and public-facing systems. Our goal is to reduce the technical barriers to investigative work and expand access to verifiable, data-driven accountability.
+      </p>
+      <div class="hero-cta">
+        <a onclick="showPage('manifesto')" class="btn btn-primary" role="button">Read the Manifesto</a>
+        <a onclick="showPage('cases')" class="btn btn-ghost" role="button">See the Work</a>
       </div>
     </div>
+
+    <footer>
+      <span>© 2026 DIOMEDES RESEARCH</span>
+      <span>Open Source. Transparent. Not For Sale. Ever.</span>
+      <span>Florida, USA</span>
+    </footer>
   </div>
 
-  <!-- PILLARS -->
-  <section id="pillars">
-    <div class="section-label reveal">What We Do</div>
-    <h2 class="section-title reveal">Four pillars.<br>One mission.</h2>
-    <div class="pillars-grid reveal">
-      <div class="pillar">
-        <div class="pillar-number">01</div>
-        <div class="pillar-title">Financial Fraud & Accountability</div>
-        <div class="pillar-text">
-          We trace money through SEC filings, IRS 990 filings, federal oversight reports, state and federal lobbying registries, corporate filings, and  FOIA requests. We map shell company networks, document grant fraud, surface undisclosed lobbying coordination, among others. If it moved through the financial system and left a public record, we will find it.
+  <!-- ==================== PAGE: MANIFESTO ==================== -->
+  <div id="page-manifesto" class="page">
+    <div class="manifesto-wrapper">
+      <div class="manifesto-inner">
+
+        <div class="section-label reveal">Manifesto</div>
+
+        <div class="manifesto-opening reveal">
+          We believe that Diomedes was the true <i>aristos archaion</i>, the best of the Greeks. While Achilles was defined by his rage and Agamemnon by his ambition and Odysseus by his cunning, Diomedes was defined by his balance: the martial prowess of a warrior and the discipline of a thinker. In that spirit, we are committed to the pursuit of knowledge with both rigor and humility. We understand that the world is complex and that uncovering hidden realities requires not only technical skill but also ethical clarity. Our manifesto is a declaration of our principles and a shared commitment to the work we do. 
         </div>
-      </div>
-      <div class="pillar">
-        <div class="pillar-number">02</div>
-        <div class="pillar-title">Environmental Pollution & Enforcement Gaps</div>
-        <div class="pillar-text">
-          We document permit violations, illegal discharge incidents, contamination events, and regulatory failures using EPA ECHO, state environmental databases, satellite imagery, geospatial analysis, etc. We do not take positions on policy. We document what happened, whether enforcement followed, and who bears the burden.
+
+        <div class="manifesto-block reveal">
+          <div class="manifesto-block-title">We reject the following</div>
+
+          <div class="manifesto-item">
+            <div class="manifesto-item-label">Jargon as a Shield</div>
+            <div class="manifesto-item-text">To obfuscate information is to prevent understanding. If a process cannot be easily accessed and understood by the community it affects, it is designed to exploit them.</div>
+          </div>
+
+          <div class="manifesto-item">
+            <div class="manifesto-item-label">Bystanding</div>
+            <div class="manifesto-item-text">To stand by while evidence disappears is an invitation for trails to go cold. Silence in the face of documented harm is an act of complicity.</div>
+          </div>
+
+          <div class="manifesto-item">
+            <div class="manifesto-item-label">Institutional Blindness</div>
+            <div class="manifesto-item-text">To ignore data because it contradicts institutional interests is a betrayal of the public trust. If the data exists, it must be acknowledged.</div>
+          </div>
+
+          <div class="manifesto-item">
+            <div class="manifesto-item-label">False Neutrality</div>
+            <div class="manifesto-item-text">To claim there are two sides to a contaminated well is to deny the existence of the contamination. Factual reality only requires a witness.</div>
+          </div>
         </div>
-      </div>
-      <div class="pillar">
-        <div class="pillar-number">03</div>
-        <div class="pillar-title">Data Distribution & Public Access</div>
-        <div class="pillar-text">
-          We make our data accessible to the public through open-source platforms and user-friendly interfaces. Our commitment is to ensure that the information we gather is available for scrutiny, analysis, and use by anyone interested in transparency and accountability.
+
+        <div class="manifesto-block reveal">
+          <div class="manifesto-block-title">We adhere to the following deeds</div>
+
+          <div class="manifesto-item">
+            <div class="manifesto-item-label">Witnessing the Record</div>
+            <div class="manifesto-item-text">We document what can be verified. Where evidence exists but attention does not, we ensure it is seen.</div>
+          </div>
+
+          <div class="manifesto-item">
+            <div class="manifesto-item-label">Vowing to Share</div>
+            <div class="manifesto-item-text">We release our tools and our findings to everyone. Knowledge is most valuable when it is accessible.</div>
+          </div>
+
+          <div class="manifesto-item">
+            <div class="manifesto-item-label">Requesting the Truth</div>
+            <div class="manifesto-item-text">We demand the truth, legally and persistently. The record is the foundation of all claims.</div>
+          </div>
+
+          <div class="manifesto-item">
+            <div class="manifesto-item-label">Standing for Transparency</div>
+            <div class="manifesto-item-text">We hide nothing about our methods. If our research is sound, it can survive any scrutiny.</div>
+          </div>
+
+          <div class="manifesto-item">
+            <div class="manifesto-item-label">Playing the Long Game</div>
+            <div class="manifesto-item-text">We do not chase headlines. We build cases. The truth does not expire.</div>
+          </div>
         </div>
+
       </div>
-            <div class="pillar">
-        <div class="pillar-number">04</div>
-        <div class="pillar-title">Network Cultivation & Community Training </div>
-        <div class="pillar-text">
-          We build the human infrastructure for open source intelligence research by training local witnesses to identify, document, and report institutional misconduct. We also cultivate a network of volunteer researchers to assist with data collection, analysis, and distribution. We do not rely on insiders or whistleblowers to come forward; we empower everyday people to be the eyes and ears of their communities.
-        </div>
-      </div>
-    </div>
-  </section>
-  <!-- WORK -->
-  <section id="work">
-    <div class="section-label reveal">Work</div>
-  <h2 class="section-title reveal">Case files.<br>Verified leads.</h2>
-  <p style="color: var(--off-white); opacity: 0.8; font-size: 0.75rem; margin-top: -1rem; margin-bottom: 3rem; max-width: 600px;">
-  All case files are derived exclusively from publicly available records and structured for research, regulatory, and journalistic use.
-  </p>
-  
-  <div class="cases-list">
-    <div class="case-item reveal">
-      <div class="case-domain">SAT-INT</div>
-      <div class="case-content">
-        <h3 class="case-title">Case File 001 — Industrial Wastewater Discharge (West Palm Beach, FL)</h3>
-        <p class="case-desc">Documented unpermitted wastewater discharge into stormwater systems using geospatial analysis and FDEP database review.</p>
-        <div class="case-details">Verified active discharge pathway from fleet wash operations; no corresponding industrial permit on file.</div>
-      </div>
-      <div class="case-outcome">REPORT READY</div>
     </div>
 
-    <div class="case-item reveal">
-      <div class="case-domain">FIN-INT</div>
-      <div class="case-content">
-        <h3 class="case-title">Case File 002 — Medicaid Fraud Network Mapping (FCCD)</h3>
-        <p class="case-desc">Mapped an interconnected network of corporate entities sharing addresses and registered agents using Sunbiz and NPI registries.</p>
-        <div class="case-details">Identified entities and patterns omitted from initial enforcement actions.</div>
-      </div>
-      <div class="case-outcome">ACTIVE FILE</div>
-    </div>
-
-    <div class="case-item reveal">
-      <div class="case-domain">PUB-REC</div>
-      <div class="case-content">
-        <h3 class="case-title">Case File 003 — Multi-State Lobbying Activity</h3>
-        <p class="case-desc">Analyzed IRS 990 filings and state lobbying disclosures to identify model legislation patterns across jurisdictions.</p>
-        <div class="case-details">Confirmed temporal alignment between lobbying activity and legislative introductions across multiple states.</div>
-      </div>
-      <div class="case-outcome">CASE STUDY</div>
-    </div>
-
-    <div class="case-item reveal">
-      <div class="case-domain">ENV-INT</div>
-      <div class="case-content">
-        <h3 class="case-title">Case File 004 — Environmental Compliance Review (Sunshine Organics)</h3>
-        <p class="case-desc">Longitudinal review of FDEP enforcement and site-level satellite imagery regarding operational compliance history.</p>
-        <div class="case-details">Documented spill events and limited regulatory escalation over a multi-year period.</div>
-      </div>
-      <div class="case-outcome">REPORT READY</div>
-    </div>
+    <footer>
+      <span>© 2026 DIOMEDES RESEARCH</span>
+      <span>Open Source. Transparent. Not For Sale. Ever.</span>
+      <span>Florida, USA</span>
+    </footer>
   </div>
-</section>
-    <div class="case-item reveal" style="border-left: 2px solid var(--blue); padding-left: 1.5rem;">
-  <div class="case-domain">DATA-SET</div>
-  <div class="case-content">
-    <h3 class="case-title" style="color: var(--blue);">MASTER_FILE: U.S. Death Row Roster</h3>
-    <p class="case-desc">A jurisdiction-standardized dataset of all individuals on death row across 27 states and the federal system is maintained as part of our public records infrastructure.</p>
-    <div class="case-details">
-      <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0eS5sOnWZFkmd4_1a7PweOtgxWYx1lvjedJ9UUUdajKOCPNpoZ3LVAGFAu6LA70hKxZjLNFuiJVCK/pubhtml?gid=1766079834&single=true&widget=true&headers=false" 
-         target="_blank" 
-         style="color: var(--white); text-decoration: underline; font-size: 0.75rem;">
-         ACCESS_LIVE_DATABASE →
-      </a>
+
+  <!-- ==================== PAGE: WHAT WE DO (PILLARS) ==================== -->
+  <div id="page-work" class="page inner-page">
+    <div class="pillars-section">
+      <div class="section-label reveal">What We Do</div>
+      <h2 class="section-title reveal">Four pillars.<br>One mission.</h2>
+      <div class="pillars-grid reveal">
+        <div class="pillar">
+          <div class="pillar-number">01</div>
+          <div class="pillar-title">Funding & Financial Traceability</div>
+          <div class="pillar-text">
+            We trace how money moves through public and regulated systems. Using SEC filings, IRS Form 990s, procurement records, corporate registries, and other public disclosures, we map how funds are allocated, distributed, and ultimately controlled. We identify ownership structures, intermediary entities, and financial pathways that connect funding to real-world systems.          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-number">02</div>
+          <div class="pillar-title">Infrastructure Verification & Ground Truth</div>
+          <div class="pillar-text">
+            We verify whether funded systems exist and function as claimed. Using satellite imagery, geospatial analysis, permitting data, and on-the-ground indicators, we compare stated outcomes against physical reality. If a project was funded, we determine what was actually built, where it exists, and whether it aligns with its intended purpose.
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-number">03</div>
+          <div class="pillar-title">Control, Ownership & System Risk</div>
+          <div class="pillar-text">
+            We identify who ultimately controls the systems that public and regulated funds support. By connecting financial records, corporate structures, and operational control, we surface patterns of influence, repeated actors, and structural risks. We do not speculate. We document control as it appears in the public record and assess the implications of that control.
+          </div>
+        </div>
+        <div class="pillar">
+          <div class="pillar-number">04</div>
+          <div class="pillar-title">Open Data & Investigative Infrastructure</div>
+          <div class="pillar-text">
+            We publish our findings, datasets, and methodologies openly. Our goal is not only to conduct investigations, but to make them reproducible. By structuring data and standardizing our methods, we enable nonprofits, researchers, journalists, and communities to verify systems independently and build on our work.
+          </div>
+        </div>
+      </div>
     </div>
+
+    <footer>
+      <span>© 2026 DIOMEDES RESEARCH</span>
+      <span>Open Source. Transparent. Not For Sale. Ever.</span>
+      <span>Florida, USA</span>
+    </footer>
   </div>
-  <div class="case-outcome" style="opacity: 1; color: var(--blue-dim);">CORE ASSET</div>
-</div>
-  </section>
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="about-content">
-      <div class="recon-frame">
-        <div class="corner-brackets"></div>
-        <img src="map.png" class="recon-img" alt="Intelligence Asset">
-        <div class="scan-bar"></div>
+
+  <!-- ==================== PAGE: WORK (CASES) ==================== -->
+  <div id="page-cases" class="page inner-page">
+    <div class="work-section">
+      <div class="section-label reveal">Work</div>
+      <h2 class="section-title reveal">Case files.<br>Verified leads.</h2>
+      <p style="color: var(--off-white); opacity: 0.8; font-size: 0.75rem; margin-top: -1rem; margin-bottom: 3rem; max-width: 600px;">
+        All case files are derived exclusively from publicly available records and structured for research, regulatory, and journalistic use.
+      </p>
+      
+      <div class="cases-list">
+        <div class="case-item reveal">
+          <div class="case-domain">SAT-INT</div>
+          <div class="case-content">
+            <h3 class="case-title">Case File 001 — Industrial Wastewater Discharge (West Palm Beach, FL)</h3>
+            <p class="case-desc">Documented unpermitted wastewater discharge into stormwater systems using geospatial analysis and FDEP database review.</p>
+            <div class="case-details">Verified active discharge pathway from fleet wash operations; no corresponding industrial permit on file.</div>
+          </div>
+          <div class="case-outcome">REPORT READY</div>
+        </div>
+
+        <div class="case-item reveal">
+          <div class="case-domain">FIN-INT</div>
+          <div class="case-content">
+            <h3 class="case-title">Case File 002 — Medicaid Fraud Network Mapping (FCCD)</h3>
+            <p class="case-desc">Mapped an interconnected network of corporate entities sharing addresses and registered agents using Sunbiz and NPI registries.</p>
+            <div class="case-details">Identified entities and patterns omitted from initial enforcement actions.</div>
+          </div>
+          <div class="case-outcome">ACTIVE FILE</div>
+        </div>
+
+        <div class="case-item reveal">
+          <div class="case-domain">PUB-REC</div>
+          <div class="case-content">
+            <h3 class="case-title">Case File 003 — Multi-State Lobbying Activity</h3>
+            <p class="case-desc">Analyzed IRS 990 filings and state lobbying disclosures to identify model legislation patterns across jurisdictions.</p>
+            <div class="case-details">Confirmed temporal alignment between lobbying activity and legislative introductions across multiple states.</div>
+          </div>
+          <div class="case-outcome">CASE STUDY</div>
+        </div>
+
+        <div class="case-item reveal">
+          <div class="case-domain">ENV-INT</div>
+          <div class="case-content">
+            <h3 class="case-title">Case File 004 — Environmental Compliance Review (Sunshine Organics)</h3>
+            <p class="case-desc">Longitudinal review of FDEP enforcement and site-level satellite imagery regarding operational compliance history.</p>
+            <div class="case-details">Documented spill events and limited regulatory escalation over a multi-year period.</div>
+          </div>
+          <div class="case-outcome">REPORT READY</div>
+        </div>
       </div>
 
-      <div class="about-text">
-        <p>All tools are released under AGPL licensing. All findings are published openly. No one pays us to find out what their government is doing. That is the point.</p>
-        <p>DIOMEDES does not advocate. DIOMEDES does not lobby. DIOMEDES does not tell anyone what to do with what it finds. DIOMEDES follows the records. Regulators, courts, and the public decide what comes next.</p>
+      <div class="case-item reveal" style="border-left: 2px solid var(--blue); padding-left: 1.5rem; margin-top: 0;">
+        <div class="case-domain">DATA-SET</div>
+        <div class="case-content">
+          <h3 class="case-title" style="color: var(--blue);">MASTER_FILE: U.S. Death Row Roster</h3>
+          <p class="case-desc">A jurisdiction-standardized dataset of all individuals on death row across 27 states and the federal system is maintained as part of our public records infrastructure.</p>
+          <div class="case-details">
+            <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vS0eS5sOnWZFkmd4_1a7PweOtgxWYx1lvjedJ9UUUdajKOCPNpoZ3LVAGFAu6LA70hKxZjLNFuiJVCK/pubhtml?gid=1766079834&single=true&widget=true&headers=false" 
+               target="_blank" 
+               style="color: var(--white); text-decoration: underline; font-size: 0.75rem;">
+               ACCESS_LIVE_DATABASE →
+            </a>
+          </div>
+        </div>
+        <div class="case-outcome" style="opacity: 1; color: var(--blue-dim);">CORE ASSET</div>
       </div>
     </div>
-  </section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="section-label">Contact</div>
-    <h2 class="contact-title reveal">Have a tip?<br>Have a lead?</h2>
-    <p class="contact-sub reveal">
-      Community tips are how investigations start. If you have witnessed financial fraud or environmental pollution and it can be corroborated through public records, reach out.
-    </p>
-    <div class="contact-links reveal">
-      <a href="mailto:kwong.osint@proton.me" class="btn btn-primary">GENERAL INQUIRIES</a>
-      <a href="https://signal.me/#p/kwongosint.24" class="btn btn-primary">SECURE TIP LINE (SIGNAL)</a>
-      <a href="https://github.com/diomedesresearch" class="btn btn-ghost" target="_blank">GitHub</a>
+    <footer>
+      <span>© 2026 DIOMEDES RESEARCH</span>
+      <span>Open Source. Transparent. Not For Sale. Ever.</span>
+      <span>Florida, USA</span>
+    </footer>
+  </div>
+
+  <!-- ==================== PAGE: ABOUT ==================== -->
+  <div id="page-about" class="page inner-page">
+    <div class="about-section">
+      <div class="about-content">
+        <div class="recon-frame">
+          <div class="corner-brackets"></div>
+          <img src="map.png" class="recon-img" alt="Intelligence Asset">
+          <div class="scan-bar"></div>
+        </div>
+
+        <div class="about-text">
+          <p>All tools are released under AGPL licensing. All findings are published openly. No one pays us to find out what their government is doing. That is the point.</p>
+          <p>DIOMEDES does not advocate. DIOMEDES does not lobby. DIOMEDES does not tell anyone what to do with what it finds. DIOMEDES follows the records. Regulators, courts, and the public decide what comes next.</p>
+        </div>
+      </div>
     </div>
-  </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <span>© 2026 DIOMEDES RESEARCH</span>
-    <span>Open Source. Transparent. Not For Sale. Ever.</span>
-    <span>Florida, USA</span>
-  </footer>
+    <footer>
+      <span>© 2026 DIOMEDES RESEARCH</span>
+      <span>Open Source. Transparent. Not For Sale. Ever.</span>
+      <span>Florida, USA</span>
+    </footer>
+  </div>
+
+  <!-- ==================== PAGE: CONTACT ==================== -->
+  <div id="page-contact" class="page inner-page">
+    <div class="contact-section">
+      <div class="section-label">Contact</div>
+      <h2 class="contact-title reveal">Have a tip?<br>Have a lead?</h2>
+      <p class="contact-sub reveal">
+        Community tips are how investigations start. If you have witnessed financial fraud or environmental pollution and it can be corroborated through public records, reach out.
+      </p>
+      <div class="contact-links reveal">
+        <a href="mailto:kwong.osint@proton.me" class="btn btn-primary">GENERAL INQUIRIES</a>
+        <a href="https://signal.me/#p/kwongosint.24" class="btn btn-primary">SECURE TIP LINE (SIGNAL)</a>
+        <a href="https://github.com/diomedesresearch" class="btn btn-ghost" target="_blank">GitHub</a>
+      </div>
+    </div>
+
+    <footer>
+      <span>© 2026 DIOMEDES RESEARCH</span>
+      <span>Open Source. Transparent. Not For Sale. Ever.</span>
+      <span>Florida, USA</span>
+    </footer>
+  </div>
 
   <script>
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+    function showPage(pageId) {
+      // Hide all pages
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      // Show target
+      document.getElementById('page-' + pageId).classList.add('active');
+      // Update nav active state
+      document.querySelectorAll('.nav-links a').forEach(a => {
+        a.classList.toggle('active', a.dataset.page === pageId);
       });
-    }, { threshold: 0.1 });
+      // Scroll to top
+      window.scrollTo(0, 0);
+      // Re-run reveal animations for the new page
+      triggerReveals();
+    }
 
-    reveals.forEach(el => observer.observe(el));
+    function triggerReveals() {
+      const reveals = document.querySelectorAll('.page.active .reveal');
+      // Reset
+      reveals.forEach(el => el.classList.remove('visible'));
+      // Re-observe
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+      reveals.forEach(el => observer.observe(el));
+    }
 
-const accessibilityToggle = document.getElementById('accessibility-toggle');
+    // Initial run
+    triggerReveals();
 
-accessibilityToggle.addEventListener('change', function() {
-  if (this.checked) {
-    document.body.classList.add('high-contrast');
-  } else {
-    document.body.classList.remove('high-contrast');
-  }
-});
+    // Accessibility toggle
+    const accessibilityToggle = document.getElementById('accessibility-toggle');
+    accessibilityToggle.addEventListener('change', function() {
+      if (this.checked) {
+        document.body.classList.add('high-contrast');
+      } else {
+        document.body.classList.remove('high-contrast');
+      }
+    });
+
+    // Keyboard nav for logo
+    document.querySelector('.nav-logo').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') showPage('home');
+    });
   </script>
 
 </body>
